@@ -62,7 +62,7 @@
   </article>
   <article class="card-footer">
     <label for=""><a href="user/public/form.php" style="color: #fdfeff;">Bukan admin? Klik untuk masuk ke form registrasi</a></label>
-    <label for=""><a href="#" style="color: #fdfeff;">Atau klik untuk menuju dashboard umum</a></label>
+    <label for=""><a href="user/public/dashboard.php" style="color: #fdfeff;">Atau klik untuk menuju dashboard umum</a></label>
   </article>
   </div>
   </div>

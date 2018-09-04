@@ -20,6 +20,12 @@ if (!isset($_GET['halaman'])) {
 			$title = "Informasi Training";
 			break;
 
+		case 'user-marketting':
+			// code...
+			$halaman = 'user-marketting.php';
+			$title = "Informasi Training";
+			break;
+
 		case 'logout':
 			// code...
 			$halaman = 'logout.php';

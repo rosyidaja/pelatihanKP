@@ -162,3 +162,13 @@ function getval(sel)
     // alert(sel.value);
     document.getElementById("lblinfo").innerHTML= "Kode Pelatihan: " + document.getElementById("jns_pelatihan").value;
 }
+
+function payTerm()
+{
+  var pterm = document.getElementById("pterm").value;
+  if (pterm == 0) {
+    document.getElementById("btnCk").style.visibility="hidden";
+  } else {
+    document.getElementById("btnCk").style.visibility="visible";
+  }
+}

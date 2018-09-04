@@ -12,6 +12,7 @@
         <th>Jenis Peserta</th>
         <th>Nama Peserta</th>
         <th><i class="fa fa-cog"></i></th>
+        <th>Payment Term</th>
         <th>Status</th>
       </tr>
     </thead>
@@ -25,7 +26,15 @@
           <button type="button" class="edit btn btn-danger btn-sm" data-toggle="modal" data-target="#mEdit"><i class="fa fa-pen"></i> Edit</button>
         </td>
         <td>
-          <span class="button-checkbox">
+          <select class="form-control" id="pterm" onclick="payTerm()">
+            <option value="0" active>Pilih Pembayaran</option>
+            <option value="cod">COD</option>
+            <option value="kontrak">Kontrak</option>
+            <option value="H - 1">H - 1</option>
+          </select>
+        </td>
+        <td>
+          <span class="button-checkbox" id="btnCk" style="visibility: hidden;">
             <button type="button" class="btn btn-sm" data-color="success">  Approve</button>
             <input type="checkbox" style="display: none;" />
           </span>
@@ -39,7 +48,15 @@
           <button type="button" class="edit btn btn-danger btn-sm" data-toggle="modal" data-target="#mEdit"><i class="fa fa-pen"></i> Edit</button>
         </td>
         <td>
-          <span class="button-checkbox">
+          <select class="form-control" id="pterm" onclick="payTerm()">
+            <option value="0" active>Pilih Pembayaran</option>
+            <option value="cod">COD</option>
+            <option value="kontrak">Kontrak</option>
+            <option value="H - 1">H - 1</option>
+          </select>
+        </td>
+        <td>
+          <span class="button-checkbox" id="btnCk" style="visibility: hidden;">
             <button type="button" class="btn btn-sm" data-color="success">  Approve</button>
             <input type="checkbox" style="display: none;" />
           </span>

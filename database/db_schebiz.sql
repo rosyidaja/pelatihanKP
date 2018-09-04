@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 03, 2018 at 03:19 PM
+-- Generation Time: Sep 04, 2018 at 05:10 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -30,9 +30,19 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `m_jadwal` (
   `jadwal_id` int(1) NOT NULL,
-  `jadwal_sesi` date NOT NULL,
+  `jadwal_sesi` varchar(10) NOT NULL,
+  `jadwal_mulai` date NOT NULL,
+  `jadwal_selesai` date NOT NULL,
   `jadwal_aktif` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `m_jadwal`
+--
+
+INSERT INTO `m_jadwal` (`jadwal_id`, `jadwal_sesi`, `jadwal_mulai`, `jadwal_selesai`, `jadwal_aktif`) VALUES
+(1, 'Sesi 1', '2018-09-04', '2018-09-06', 'y'),
+(2, 'Sesi 2', '2018-10-16', '2018-10-31', 'y');
 
 -- --------------------------------------------------------
 
@@ -96,7 +106,8 @@ INSERT INTO `m_peserta` (`peserta_id`, `peserta_nama`, `peserta_email`, `peserta
 (1, 0, 'archiecakra1@gmail.com', 'RUNGKUT MENANGGAL HARAPAN H-21', 1232321, '', ''),
 (2, 0, 'minartieko@gmail.com', 'wdwadwadwadwa', 446768, '', ''),
 (3, 0, 'iqbal@adwada.com', 'wadwadawda123', 1232321, '', ''),
-(4, 0, 'archiecakra3@gmail.com', 'RUNGKUT MENANGGAL HARAPAN H-21a1231231', 2131232, '', '');
+(4, 0, 'archiecakra3@gmail.com', 'RUNGKUT MENANGGAL HARAPAN H-21a1231231', 2131232, '', ''),
+(5, 0, 'wqewq@awda', '12321', 1232, '', '');
 
 -- --------------------------------------------------------
 
@@ -144,7 +155,8 @@ INSERT INTO `t_sertifikasi` (`sertifikassi_id`, `jadwal_id`, `peserta_id`, `reg_
 (1, 1, 1, 0, '', 0),
 (2, 1, 2, 0, '', 0),
 (3, 2, 3, 0, '', 0),
-(4, 1, 4, 0, '', 0);
+(4, 1, 4, 0, '', 0),
+(5, 0, 5, 0, '', 0);
 
 --
 -- Indexes for dumped tables
@@ -194,7 +206,7 @@ ALTER TABLE `t_sertifikasi`
 -- AUTO_INCREMENT for table `m_jadwal`
 --
 ALTER TABLE `m_jadwal`
-  MODIFY `jadwal_id` int(1) NOT NULL AUTO_INCREMENT;
+  MODIFY `jadwal_id` int(1) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `m_jns_pelatihan`
@@ -212,7 +224,7 @@ ALTER TABLE `m_pegawai`
 -- AUTO_INCREMENT for table `m_peserta`
 --
 ALTER TABLE `m_peserta`
-  MODIFY `peserta_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `peserta_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `m_user`
@@ -224,7 +236,7 @@ ALTER TABLE `m_user`
 -- AUTO_INCREMENT for table `t_sertifikasi`
 --
 ALTER TABLE `t_sertifikasi`
-  MODIFY `sertifikassi_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `sertifikassi_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

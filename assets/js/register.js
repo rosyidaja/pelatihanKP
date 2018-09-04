@@ -155,3 +155,10 @@ function hideInstansi()
   document.getElementById("instansi").style.display="none";
   document.getElementById("individu").style.display="unset";
 }
+
+// ValueDropdown
+function getval(sel)
+{
+    // alert(sel.value);
+    document.getElementById("lblinfo").innerHTML= "Kode Pelatihan: " + document.getElementById("jns_pelatihan").value;
+}

@@ -31,7 +31,8 @@
       }
     }
 
-    $drDown = mysqli_query($koneksi,"select * from m_jns_pelatihan order by jns_pelatihan_nama ASC");
+    $drDown1 = mysqli_query($koneksi,"select * from m_jns_pelatihan order by jns_pelatihan_nama ASC");
+    $drDown2 = mysqli_query($koneksi,"select * from m_jadwal");
     ?>
 
     <div class="container">
@@ -104,26 +105,31 @@
                   <label class="control-label">Jenis Pelatihan</label>
                 </div>
                 <div class="col-sm-3 form-group">
-                  <select class="form-control" name="course">
+                  <select class="form-control" name="course" onchange="getval(this);" id="jns_pelatihan">
                     <?php
-                    if(mysqli_num_rows($drDown) > 0){
-                      while ($row = mysqli_fetch_assoc($drDown)) {
+                    if(mysqli_num_rows($drDown1) > 0){
+                      while ($rowA = mysqli_fetch_assoc($drDown1)) {
                         // code...
-                        echo '<option>'.$row[jns_pelatihan_nama].'</option>';
+                        echo '<option value="'.$rowA[jns_pelatihan_kode].'">'.$rowA[jns_pelatihan_nama].'</option>';
                       }
                     }
                     ?>
                   </select>
                 </div>
                 <div class="col-sm-3 form-group text-center">
-                  <label class="control-label alert alert-info" style="margin-bottom: 0px; padding-bottom: 6px;padding-top: 6px;">Kode Pelatihan: MTCNA</label>
+                  <label class="control-label alert alert-info" id="lblinfo" style="margin-bottom: 0px; padding-bottom: 6px;padding-top: 6px;">Kode Pelatihan: </label>
                 </div>
                 <div class="col-sm-2 form-group">
                   <select class="form-control" name="schedule">
-                    <option value="0">Pilih Jadwal</option>
-                    <option value="1">Sesi 1, 04 Sep 2018 - 05 Sep 2018</option>
-                    <option value="2">Sesi 2, 05 Jan 2018 - 05 Sep 2018</option>
-                    <option value="3">Sesi 3, 06 Aug 2018 - 05 Sep 2018</option>
+                    <?php
+                    if (mysqli_num_rows($drDown2) > 0) {
+                      // code...
+                      while ($rowB = mysqli_fetch_assoc($drDown2)) {
+                        // code...
+                        echo '<option value="'.$rowB[jadwal_id].'">'.$rowB[jadwal_sesi].' : '.$rowB[jadwal_mulai].' - '.$rowB[jadwal_selesai].'</option>';
+                      }
+                    }
+                    ?>
                   </select>
                 </div>
               </div>
@@ -137,9 +143,77 @@
                 </div>
               </div>
 
-              <div class="form-row">
+              <!-- <div class="form-row">
                 <div class="col-sm-3 form-group">
                   <button type="submit" value="submit-individu" class="btn btn-primary btn-md"><i class="glyphicon glyphicon-user"></i>Submit Data</button>
+                </div>
+              </div> -->
+
+              <div class="form-row card-footer">
+                <div class="col-sm-12 form-group">
+                  <h5>Syarat & Ketentuan</h5>
+                  <div class="content-agr" style="width:100%; height:200px; overflow:scroll; ">
+
+                    <table>
+                      <tr>
+                        <td style="vertical-align:top">1. </td>
+                        <td>Untuk pengambilan sistem paket, schedule kelas yang tertulis diatas tidak dapat dirubah oleh peserta.
+                        Pihak EBIZ INFOTAMA INTERINDO dapat mengganti jadwal kelas yang telah ditentukan apabila jumlah peserta tidak terpenuhi batas minimal</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">2. </td>
+                        <td>Pembayaran paling lambat 1 minggu sebelum training.</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">3. </td>
+                        <td>Setiap peserta diharapkan hadir tepat pada waktunya.</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">4. </td>
+                        <td>Apabila peserta mengalami keterlambatan dalam proses belajar mengajar karena kesalahannya sendiri,
+                        maka keterlambatan tersebut menjadi tanggungjawab peserta.</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">5. </td>
+                        <td>Apabila karena sesuatu hal, pengajar terlambat datang, peserta akan memperoleh wktu belajar sesuai dengan jadwal yang sudah ditentukan</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">6. </td>
+                        <td>Setiap peserta tidak diijinkan mengikuti kelas training / ujian sebelum melunasi biaya yang di tetapkan.</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">7. </td>
+                        <td>Bagi peserta yang tidak mengikuti kursus tanpa pemberitahuan terlebih dahulu dianggap mengundurkan diri dan tidak ada pengembalian uang kursus.</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">8. </td>
+                        <td>Pemberitahuan harap dilakukan maksimal 1 minggu sebelum pelaksanaan kursus.</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">9. </td>
+                        <td>Setiap peserta diharapkan menjaga peralatan komputer muapun barang barang lainnya selama pelakasanaan kursus.</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">10. </td>
+                        <td>Setiap peserta yang mengikuti kursus hingga selesai atau lebih dari sama dengan 75% durasi training akan memperoleh sertifikat.</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">11. </td>
+                        <td>Apabila peserta berniat membatalkan schedule kelas yang telah disepakati, maka pembayaran yang telah diterima tidak dapat di kembalikan.</td>
+                      </tr>
+                      <tr>
+                        <td style="vertical-align:top">12. </td>
+                        <td>Penerima tugas memberikan materi dan bimbingan teknis atas studi kasus permasalahan yang dihadapi peserta yang sudah disepakati baik materi dan kuantitasnya namun tidak menyelesaikan permasalahan
+                        studi kasus tersebut secara menyeluruh (Penyesuaian Skala Proyek)</td>
+                      </tr>
+
+                    </table>
+
+                </div>
+                  <input type="checkbox" name="checkbox" value="check" id="agree" required /> I have read and agree to the Terms and Conditions and Privacy Policy
+                </div>
+                <div class="col-sm-12 form-group">
+                  <button type="submit" value="submit-individu" class="btn btn-primary btn-md"><i class="fa fa-paper-plane"></i> Submit Data</button>
                 </div>
               </div>
 

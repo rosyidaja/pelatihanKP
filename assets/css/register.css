@@ -1,6 +1,6 @@
 .sidenav {
     height: 100%;
-    width: 200px;
+    width: 250px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -35,4 +35,25 @@
   height: 200px;
   margin-left: 20px;
   overflow: scroll;
+}
+
+.sidenav li{
+    padding-right: 20px;
+}
+
+.sidenav li.active{
+    background-color: #55555663;
+}
+
+ul.nav.nav-pills.nav-stacked.text-right{
+    margin-top:20px;
+}
+
+div.list-side li{
+    line-height: 2;
+}
+
+.header-public{
+    margin-top: 30px;
+    margin-bottom: 30px;
 }

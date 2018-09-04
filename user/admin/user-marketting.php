@@ -1,3 +1,5 @@
+<h1>Manage User</h1>
+
 <table id="tbcourse" class="table table-stripped table-hover table-sm text-center">
 <div></div>
   <thead>

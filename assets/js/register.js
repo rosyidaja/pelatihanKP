@@ -156,7 +156,7 @@ function hideInstansi()
   document.getElementById("individu").style.display="unset";
 }
 
-// ValueDropdown
+// dropdown function
 function getval(sel)
 {
     // alert(sel.value);

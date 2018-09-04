@@ -31,11 +31,12 @@
       }
     }
 
+    // query dropdown
     $drDown1 = mysqli_query($koneksi,"select * from m_jns_pelatihan order by jns_pelatihan_nama ASC");
     $drDown2 = mysqli_query($koneksi,"select * from m_jadwal");
     ?>
 
-    <div class="container">
+    <div class="container" id="start">
       <div class="row justify-content-center">
       <div class="col-sm-12">
         <div class="card">

@@ -13,11 +13,21 @@
   </thead>
 
   <tbody>
-    <td>1</td>
+    <tr>
+    <td>1.</td>
     <td>adi dwi</td>
     <td>adi</td>
     <td>12345</td>
-    <td><a href="#">View</a></td>
+    <td><button type="button" class="edit btn btn-danger btn-sm" data-toggle="modal" data-target="#mEdit"><i class="fa fa-pen"></i> Edit</button></td>
+    </tr>
+    
+    <tr>
+    <td>2.</td>
+    <td>Onibi</td>
+    <td>adi</td>
+    <td>12345</td>
+    <td><button type="button" class="edit btn btn-danger btn-sm" data-toggle="modal" data-target="#mEdit"><i class="fa fa-pen"></i> Edit</button></td>
+    </tr>
 
     <tr>
       <th></th>
@@ -26,8 +36,7 @@
       <th></th>
       <th class="add-user">
       <a class="btn icon-btn btn-success" href="#"><span class="glyphicon btn-glyphicon glyphicon-plus img-circle text-success"></span>Add User</a>
-
-    </th>
+      </th>
     </tr>
   </tbody>
 

@@ -74,7 +74,7 @@ if ($_SESSION['status']!="admin") {
 			<div class="list-side">
 			<ul class="nav nav-pills nav-stacked text-right" style="display:block;">
 				<li class="active"><a href="index.php">Dashboard</a></li>
-				<li><a href="?halaman=user-marketting">User Marketting</a></li>
+				<li><a href="?halaman=user-marketting">Manage User</a></li>
 				<li><a href="?halaman=course-info">Data Registrasi</a></li>
 				<li><a href="?halaman=akun-info">Pengaturan Akun</a></li>
 				<li><a href="?halaman=logout">Logout</a></li>

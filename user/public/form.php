@@ -71,6 +71,7 @@
                 </div>
                 <div class="col-sm-8 form-group">
                   <input type="text" class="form-control" name="nama" placeholder="Nama Lengkap" required>
+                  <input type="hidden" name="pilihan" value="individu">
                 </div>
               </div>
 
@@ -97,7 +98,7 @@
                   <label class="control-label">Nomor Telepon</label>
                 </div>
                 <div class="col-sm-8 form-group">
-                  <input type="text" class="form-control" name="telp" placeholder="Nomor Telepon" required>
+                  <input type="number" class="form-control" name="telp" placeholder="Nomor Telepon" required>
                 </div>
               </div>
 
@@ -231,7 +232,7 @@
               <div id="instansi" style="display:none">
               <div class="form-row">
                 <div class="col-sm-3 form-group">
-                  <label class="control-label">Nama PIC</label>
+                  <label class="control-label">Nama Instansi</label>
                 </div>
                 <div class="col-sm-8 form-group">
                   <input type="text" id="nama_instansi" class="form-control" name="" value="" placeholder="Nama instansi" >
@@ -249,7 +250,7 @@
 
               <div class="form-row">
                 <div class="col-sm-3 form-group">
-                  <label class="control-label">Alamat PIC</label>
+                  <label class="control-label">Alamat Instansi</label>
                 </div>
                 <div class="col-sm-8 form-group">
                   <input type="text" id="alamat_instansi" class="form-control" name="" value="" placeholder="Alamat Instansi" >

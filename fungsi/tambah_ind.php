@@ -5,6 +5,7 @@ include '../config/koneksi.php';
 if (isset($_POST['nama'])) {
   // code...
   $nama = $_POST['nama'];
+  $pilihan = $_POST['pilihan'];
   $email = $_POST['email'];
   $alamat = $_POST['alamat'];
   $telp = $_POST['telp'];
@@ -16,13 +17,13 @@ if (isset($_POST['nama'])) {
   echo "user  	: ".$nama."
   <br/>email  	: ".$email."
   <br/>alamat 	: ".$alamat."
-  <br/>telp	 	: ".$telp."
+  <br/>telp	 	 : ".$telp."
   <br/>course 	: ".$course."
   <br/>schedule	: ".$schedule."
   <br/>marketting: ".$marketing.""
   ;
 
-  $sql = "INSERT INTO m_peserta (peserta_nama, peserta_email, peserta_alamat, peserta_telp) VALUES ('".$nama."', '".$email."', '".$alamat."', $telp)";
+  $sql = "INSERT INTO m_peserta (peserta_nama, peserta_email, peserta_alamat, peserta_telp, peserta_jenis) VALUES ('".$nama."', '".$email."', '".$alamat."', '$telp', '".$pilihan."')";
 
   if (mysqli_query($koneksi, $sql)) {
     // code...

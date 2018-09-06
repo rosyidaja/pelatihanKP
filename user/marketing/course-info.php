@@ -11,6 +11,7 @@
         <th>No Regis</th>
         <th>Jenis Peserta</th>
         <th>Nama Peserta</th>
+        <th>Jenis Pelatihan</th>
         <th><i class="fa fa-cog"></i></th>
         <th>Payment Term</th>
         <th>Status</th>

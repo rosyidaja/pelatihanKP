@@ -1,3 +1,7 @@
+<?php
+include '../../config/koneksi.php';
+$query = mysqli_query($koneksi, "SELECT * FROM m_peserta ORDER BY peserta_id DESC");
+?>
 <div class="">
   <h1>Data Registrasi Training</h1>
 </div>
@@ -11,7 +15,9 @@
         <th>No Regis</th>
         <th>Jenis Peserta</th>
         <th>Nama Peserta</th>
-        <th>Jenis Pelatihan</th>
+        <th>email</th>
+        <th>no.telp</th>
+        <th>alamat</th>
         <th><i class="fa fa-cog"></i></th>
         <th>Payment Term</th>
         <th>Status</th>
@@ -19,7 +25,38 @@
     </thead>
 
     <tbody>
+    <?php if (mysqli_num_rows($query)>0) {?>
+    <?php $no=1;
+      while ($data = mysqli_fetch_array($query)){
+     ?>
       <tr>
+        <td><?php echo $no ?></td>
+        <td><?php echo $data['peserta_jenis'];?></td>
+        <td><?php echo $data["peserta_nama"];?></td>
+        <td><?php echo $data["peserta_email"];?></td>
+        <td><?php echo $data["peserta_telp"];?></td>
+        <td><?php echo $data["peserta_alamat"];?></td>
+        <td>
+          <button type="button" class="edit btn btn-danger btn-sm" data-toggle="modal" data-target="#mEdit"><i class="fa fa-pen"></i> Edit</button>
+        </td>
+        <td>
+          <select class="form-control" id="pterm" onclick="payTerm()">
+            <option value="0" active>Pilih Pembayaran</option>
+            <option value="cod">COD</option>
+            <option value="kontrak">Kontrak</option>
+            <option value="H - 1">H - 1</option>
+          </select>
+        </td>
+        <td>
+          <span class="button-checkbox" id="btnCk" style="visibility: hidden;">
+            <button type="button" class="btn btn-sm" data-color="success">  Approve</button>
+            <input type="checkbox" style="display: none;" />
+          </span>
+        </td>
+      </tr>      
+      <?php $no++; } ?>
+      <?php } ?>
+<!--       <tr>
         <td>123</td>
         <td>Instansi</td>
         <td>PT. Minyak Telon</td>
@@ -40,29 +77,7 @@
             <input type="checkbox" style="display: none;" />
           </span>
         </td>
-      </tr>
-      <tr>
-        <td>123</td>
-        <td>Instansi</td>
-        <td>PT. Minyak Telon</td>
-        <td>
-          <button type="button" class="edit btn btn-danger btn-sm" data-toggle="modal" data-target="#mEdit"><i class="fa fa-pen"></i> Edit</button>
-        </td>
-        <td>
-          <select class="form-control" id="pterm" onclick="payTerm()">
-            <option value="0" active>Pilih Pembayaran</option>
-            <option value="cod">COD</option>
-            <option value="kontrak">Kontrak</option>
-            <option value="H - 1">H - 1</option>
-          </select>
-        </td>
-        <td>
-          <span class="button-checkbox" id="btnCk" style="visibility: hidden;">
-            <button type="button" class="btn btn-sm" data-color="success">  Approve</button>
-            <input type="checkbox" style="display: none;" />
-          </span>
-        </td>
-      </tr>
+      </tr> -->
     </tbody>
 
   </table>

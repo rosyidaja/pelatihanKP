@@ -52,6 +52,7 @@ while ($row = mysqli_fetch_array($datauser)) {
         <!-- modal header end -->
         <!-- modal body start -->
         <div class="modal-body">
+          <input type="hidden" name="edit_user_id" value="<?php echo $id?>">
           <div class="form-row">
             <div class="col-sm-3">
               <label class="control-label">Username</label>
@@ -92,7 +93,7 @@ while ($row = mysqli_fetch_array($datauser)) {
         <!-- modal footer start -->
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary" name="update-user">Submit</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
         </div>
         <!-- modal footer end -->
       </div>
@@ -102,7 +103,92 @@ while ($row = mysqli_fetch_array($datauser)) {
 
 <!-- Modal Edit User End -->
 
+<!-- Modal Delete User Start -->
+
+<div class="modal fade" id="delete<?php echo $id;?>">
+  <form action="../../fungsi/admin_manage_user.php" method="post">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Delete User</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" name="delete_id" value="<?php echo $id?>">
+          <div class="alert alert-danger"> <p> Delete user "<strong><?php echo $username;?>" ? </p> </div>
+        </div>
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" name="delete">Konfirmasi</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Modal Delete User end -->
 <?php
 }
 echo "</tbody>";
 ?>
+
+<!-- Modal Add User Start -->
+
+<div class="modal fade" id="adduser">
+  <form class="form-horizontal" method="post" action="../../fungsi/admin_manage_user.php">
+    <div class="modal-dialog modal-md">
+      <div class="modal-content">
+        <!-- modal header start -->
+        <div class="modal-header">
+          <h4>Tambah User Baru</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- modal header end -->
+        <!-- modal body start -->
+        <div class="modal-body">
+          <div class="form-row">
+            <div class="col-sm-3">
+              <label class="control-label">Username</label>
+            </div>
+            <div class="col-sm-4">
+              <input type="text" name="username" class="form-control" placeholder="Username">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-sm-3">
+              <label class="control-label">Password</label>
+            </div>
+            <div class="col-sm-4">
+              <input type="text" name="password" class="form-control" placeholder="Password">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-sm-3">
+              <label class="control-label">Level</label>
+            </div>
+            <div class="col-sm-4">
+              <select class="form-control" name="level">
+                <option value="admin">Admin</option>
+                <option value="marketing">Marketing</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <!-- modal body end -->
+        <!-- modal footer start -->
+        <div class="modal-footer">
+          <button type="submit" class="btn btn-primary" name="add-user">Tambah User</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+        </div>
+        <!-- modal footer end -->
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Modal Add User End -->
+
+<div>
+  <button type="button" class="btn btn-primary btn-sm" data-target="#adduser" data-toggle="modal"><i class="fa fa-plus"></i> Tambah User</button>
+  <br>
+</div>

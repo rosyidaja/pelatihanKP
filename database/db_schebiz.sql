@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2018 at 05:23 AM
+-- Generation Time: Sep 06, 2018 at 05:42 AM
 -- Server version: 10.1.33-MariaDB
 -- PHP Version: 7.2.6
 
@@ -82,6 +82,14 @@ CREATE TABLE `m_pegawai` (
   `pegawai_aktif` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `m_pegawai`
+--
+
+INSERT INTO `m_pegawai` (`pegawai_id`, `pegawai_nama`, `pegawai_jenis`, `pegawai_aktif`) VALUES
+(1, 'ani', 'admin', 'y'),
+(2, 'adit', 'marketing', 'y');
+
 -- --------------------------------------------------------
 
 --
@@ -117,7 +125,7 @@ INSERT INTO `m_peserta` (`peserta_id`, `peserta_nama`, `peserta_email`, `peserta
 
 CREATE TABLE `m_user` (
   `user_id` int(10) NOT NULL,
-  `user_level` int(1) NOT NULL,
+  `user_level` text NOT NULL,
   `user_nama` varchar(100) NOT NULL,
   `user_pwd` varchar(100) NOT NULL,
   `pegawai_id` int(10) NOT NULL,
@@ -129,8 +137,8 @@ CREATE TABLE `m_user` (
 --
 
 INSERT INTO `m_user` (`user_id`, `user_level`, `user_nama`, `user_pwd`, `pegawai_id`, `user_aktif`) VALUES
-(1, 1, 'ani', '123', 1, 'y'),
-(2, 2, 'adit', '123', 3, 'y');
+(1, 'admin', 'ani', '123', 1, 'y'),
+(2, 'marketing', 'adit', '123', 2, 'y');
 
 -- --------------------------------------------------------
 
@@ -218,7 +226,7 @@ ALTER TABLE `m_jns_pelatihan`
 -- AUTO_INCREMENT for table `m_pegawai`
 --
 ALTER TABLE `m_pegawai`
-  MODIFY `pegawai_id` int(10) NOT NULL AUTO_INCREMENT;
+  MODIFY `pegawai_id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `m_peserta`

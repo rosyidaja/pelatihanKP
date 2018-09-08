@@ -8,7 +8,7 @@ $(document).ready(function() {
     kolom += '<td><select class="form-control" id="pel' + counter + '"><option value="oca">Java SE Fundamental (OCA)</option><option value="zend">Zend PHP</option><option value="mikrotik">Mikrotik Basic Essential</option></select> </td>';
     kolom += '<td>KODE_PEL</td>';
     kolom += '<td><input type="text" class="form-control" id="nama' + counter + '" placeholder="Nama Peserta"></td>';
-    kolom += '<td><select class="form-control" id="pel' + counter + '"><option value="sesi1">Sesi 1 - 21 Aug 2018</option><option value="sesi2">Sesi 2 - 21 Aug 2018</option><option value="sesi3">Sesi 3 - 21 Aug 2018</option></select></td>';
+    kolom += '<td><select class="form-control" id="jadwal' + counter + '"><option value="1">Sesi 1 - 21 Aug 2018</option><option value="2">Sesi 2 - 21 Aug 2018</option><option value="3">Sesi 3 - 21 Aug 2018</option></select></td>';
     kolom += '<td><input type="text" class="form-control" id="cat' + counter + '" placeholder="Masukkan Catatan"></td>';
     kolom += '<td><button type="button" class="hapus btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></td>';
 
@@ -45,11 +45,13 @@ $(function () {
               var nama_peserta = row.find("[id^=nama]").val();
               /* Checking if control exist or not else assign empty value in sizeMax*/
               var jenis = row.find("[id^=pel]") != "undefined" ? row.find("[id^=pel]").val() : "";
+              var jadwal = row.find("[id^=jadwal]") != "undefined" ? row.find("[id^=jadwal]").val() : "";
               //var kode = row.find("[id^=kode]").val();
               var catatan = row.find("[id^=cat]").val();
               /*Sets the Values of controls */
               WireDimDetail.nama_peserta = nama_peserta;
               WireDimDetail.jenis = jenis;
+              WireDimDetail.jadwal = jadwal;
               //WireDimDetail.kode = kode;
               WireDimDetail.catatan = catatan;
               /*Add WireDimDetail object in WireDimDetails Array object*/
@@ -57,20 +59,20 @@ $(function () {
           })
           /*Add WireDimDetails array of object to user object*/
           //user.WireDimDetails = WireDimDetails;
-          info.detail = WireDimDetails;
-          console.log(info);
-
+          //info.detail = WireDimDetails;
+          //console.log(info);
           $.ajax({
               type: 'POST',
+              data: {
+                formValues : info,
+                task : WireDimDetails
+                },
               url: '../../fungsi/tambah_comp.php',
-              data: JSON.stringify({data:info}),
-              contentType: "application/json; charset=utf-8",
-              dataType: "json",
               success: function(result) {
-                 if(result == null){
+                 if(result != 1){
                   alert("Data Gagal dihapus, silahkan Coba Kembali");
                 }else{
-                  document.getElementById('testing').value = result;
+                    window.location.href = "../../user/public/form.php?pesan=sukses";
                 }
               }
             });

@@ -36,6 +36,7 @@ $(function () {
           info.alamat_instansi = $("[id*=alamat_instansi]").val();
           info.nomer_instansi = $("[id*=nomer_instansi]").val();
           info.nama_marketing = $("[id*=nama_marketing]").val();
+          info.form_jenis = $("[id*=form_jenis]").val();
           /* Creating Array object as WireDimDetails to add in user object*/
           var WireDimDetails = new Array();
           $("#tbpeserta tbody tr").each(function () {

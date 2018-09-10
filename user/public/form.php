@@ -230,6 +230,7 @@
             <form class="form-horizontal" id="FormComp" action="../../fungsi/tambah_comp.php" method="post">
 
               <div id="instansi" style="display:none">
+                <input type="hidden" id="form_jenis" name="" value="instansi">
               <div class="form-row">
                 <div class="col-sm-3 form-group">
                   <label class="control-label">Nama Instansi</label>

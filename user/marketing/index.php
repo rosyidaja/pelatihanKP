@@ -20,6 +20,12 @@ if (!isset($_GET['halaman'])) {
 			$title = "Informasi Training";
 			break;
 
+		case 'jadwal':
+			// code...
+			$halaman = 'jadwal.php';
+			$title = "Jadwal Training";
+			break;
+
 		case 'logout':
 			// code...
 			$halaman = 'logout.php';
@@ -68,6 +74,7 @@ if ($_SESSION['status']!="marketing") {
 			<div class="list-side">
 			<ul class="nav nav-pills nav-stacked text-right" style="display:block;">
 				<li><a href="index.php">Dashboard</a></li>
+				<li><a href="?halaman=jadwal">Jadwal</a></li>
 				<li><a href="?halaman=course-info">Data Registrasi</a></li>
 				<li><a href="?halaman=akun-info">Pengaturan Akun</a></li>
 				<li><a href="?halaman=logout">Logout</a></li>

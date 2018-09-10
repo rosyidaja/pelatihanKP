@@ -1,3 +1,8 @@
+<?php 
+    include '../../config/koneksi.php';
+    $query =mysqli_query($koneksi, "SELECT ps.peserta_id, ps.peserta_nama, p.jns_pelatihan_kode, p.jns_pelatihan_nama, j.jadwal_id, j.jadwal_sesi FROM m_peserta ps, m_jns_pelatihan p, m_jadwal j WHERE ps.jns_pelatihan_kode=p.jns_pelatihan_kode AND ps.jadwal_id=j.jadwal_id ORDER BY ps.peserta_id ASC ");
+
+?>
 <div class="alert alert-success alert-dismissible">
   <button type="button" class="close" data-dismiss="alert" name="button">&times</button>
   <strong>Login Sukses!</strong> Selamat datang, <?php echo $_SESSION['username']; ?>
@@ -33,17 +38,21 @@
     </thead>
 
     <tbody>
+    <?php if (mysqli_num_rows($query)>0) {?>
+    <?php $no=1;
+      while ($data = mysqli_fetch_array($query)){
+     ?>
       <tr>
-        <td>1.</td>
-        <td>Zend PHP</td>
-        <td>Sesi 1(21-08-2018 / 1-01-2019)</td>
-        <td>Archie</td>
+        <td><?php echo $no ?></td>
+        <td><?php echo $data['jns_pelatihan_nama'];?></td>
+        <td><?php echo $data['jadwal_id'];?></td>
+        <td><?php echo $data['peserta_nama'];?></td>
         <td>30 Orang</td>
         <td>Ebiz</td>
         <td>Achmad Subekti</td>
         <td>Softcopy</td>
       </tr>
-      <tr>
+      <!-- <tr>
         <td>2.</td>
         <td></td>
         <td>Sesi 2(19-09-2018 / 1-01-2019)</td>
@@ -115,8 +124,10 @@
         <td>Probolinggo</td>
         <td>Achmad Subekti</td>
         <td>Softcopy</td>
-      </tr>
+      </tr> -->
     </tbody>
+    <?php $no++; } ?>
+      <?php } ?>
 
   </table>
                 </div>

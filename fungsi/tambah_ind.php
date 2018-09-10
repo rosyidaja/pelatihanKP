@@ -12,6 +12,8 @@ if (isset($_POST['nama'])) {
   $course = $_POST['course'];
   $schedule = $_POST['schedule'];
   $marketing = $_POST['marketing'];
+  $course = $_POST['course'];
+  $schedule = $_POST['schedule'];
 
   echo "<span class='success'>Dengan <b>METODE POST</b></span><br/>";
   echo "user  	: ".$nama."
@@ -23,7 +25,7 @@ if (isset($_POST['nama'])) {
   <br/>marketting: ".$marketing.""
   ;
 
-  $sql = "INSERT INTO m_peserta (peserta_nama, peserta_email, peserta_alamat, peserta_telp, peserta_jenis) VALUES ('".$nama."', '".$email."', '".$alamat."', '$telp', '".$pilihan."')";
+  $sql = "INSERT INTO m_peserta (peserta_nama, peserta_email, peserta_alamat, peserta_telp, peserta_jenis, jns_pelatihan_kode, jadwal_id) VALUES ('".$nama."', '".$email."', '".$alamat."', '$telp', '".$pilihan."', '".$course."' ,'$schedule')";
 
   if (mysqli_query($koneksi, $sql)) {
     // code...
@@ -39,7 +41,7 @@ if (isset($_POST['nama'])) {
     }
 
   } else {
-    // code...
+    // cod ...
     echo "Error : " . $sql . "<br>" . $koneksi->error;
   }
 

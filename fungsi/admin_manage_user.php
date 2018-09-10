@@ -8,7 +8,7 @@ if (isset($_POST['add-user'])) {
   $password = $_POST['password'];
   $level = $_POST['level'];
 
-  $tambah = "INSERT INTO m_user (user_level, user_nama, user_pwd) VALUES ('".$level."', '".$username."', '".$password."')";
+  $tambah = "INSERT INTO m_user (level_id, user_nama, user_pwd) VALUES ('".$level."', '".$username."', '".$password."')";
 
   if (mysqli_query($koneksi, $tambah)) {
     // code...

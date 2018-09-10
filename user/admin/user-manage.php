@@ -23,7 +23,7 @@ while ($row = mysqli_fetch_array($datauser)) {
   // code...
   $id = $row['user_id'];
   $username = $row['user_nama'];
-  $level = $row['user_level'];
+  $level = $row['level_id'];
   $password = $row['user_pwd'];
 
   echo "<tr>";
@@ -168,8 +168,8 @@ echo "</tbody>";
             </div>
             <div class="col-sm-4">
               <select class="form-control" name="level">
-                <option value="admin">Admin</option>
-                <option value="marketing">Marketing</option>
+                <option value="1">Admin</option>
+                <option value="2">Marketing</option>
               </select>
             </div>
           </div>

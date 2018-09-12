@@ -5,7 +5,7 @@ $(document).ready(function() {
     var barisbaru = $("<tr>");
     var kolom = "";
     var counter = $("#tbpeserta tbody>tr").length + 1;
-    kolom += '<td><select class="form-control" id="pel' + counter + '"><option value="oca">Java SE Fundamental (OCA)</option><option value="zend">Zend PHP</option><option value="mikrotik">Mikrotik Basic Essential</option></select> </td>';
+    kolom += '<td><select class="form-control" id="pel' + counter + '"><option value="1Z0-808">Java SE Fundamental (OCA)</option><option value="zend">Zend PHP</option><option value="mikrotik">Mikrotik Basic Essential</option></select> </td>';
     kolom += '<td>KODE_PEL</td>';
     kolom += '<td><input type="text" class="form-control" id="nama' + counter + '" placeholder="Nama Peserta"></td>';
     kolom += '<td><select class="form-control" id="jadwal' + counter + '"><option value="1">Sesi 1 - 21 Aug 2018</option><option value="2">Sesi 2 - 21 Aug 2018</option><option value="3">Sesi 3 - 21 Aug 2018</option></select></td>';

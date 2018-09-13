@@ -8,7 +8,7 @@ if (isset($_POST['add-user'])) {
   $password = $_POST['password'];
   $level = $_POST['level'];
 
-  $tambah = "INSERT INTO m_user (level_id, user_nama, user_pwd) VALUES ('".$level."', '".$username."', '".$password."')";
+  $tambah = "INSERT INTO m_user (user_level, user_nama, user_pwd) VALUES ('".$level."', '".$username."', '".$password."')";
 
   if (mysqli_query($koneksi, $tambah)) {
     // code...
@@ -48,7 +48,7 @@ if (isset($_POST['update-user'])) {
   $password = $_POST['password'];
   $level = $_POST['level'];
 
-  $tambah = "UPDATE m_user SET user_nama='$username', user_pwd='$password', user_level='$level' WHERE user_id='$edit_user_id'";
+  $tambah = "UPDATE m_user SET user_nama='$username', user_pwd='$password', level_id='$level' WHERE user_id='$edit_user_id'";
 
   if (mysqli_query($koneksi, $tambah)) {
     // code...

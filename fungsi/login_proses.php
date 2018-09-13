@@ -31,7 +31,7 @@ if (isset($_POST['login'])) {
 	} else {
 		// code...
 		$row = mysqli_fetch_assoc($data);
-		if ($row['level_id'] == "1") {
+		if ($row['user_level'] == "1") {
 			// code...
 			$_SESSION['username']=$username;
 			$_SESSION['status']="admin";

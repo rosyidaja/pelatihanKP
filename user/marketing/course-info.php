@@ -15,9 +15,13 @@ $query = mysqli_query($koneksi, "SELECT * FROM m_peserta ORDER BY peserta_id DES
         <th>No Regis</th>
         <th>Jenis Peserta</th>
         <th>Nama Peserta</th>
-        <th>email</th>
+        <th>Email Peserta</th>
         <th>no.telp</th>
         <th>alamat</th>
+        <th>Instansi</th>
+        <th>Schedule</th>
+        <th>Lokasi</th>
+        <th>Tools</th>
         <th><i class="fa fa-cog"></i></th>
         <th>Payment Term</th>
         <th>Status</th>
@@ -36,6 +40,10 @@ $query = mysqli_query($koneksi, "SELECT * FROM m_peserta ORDER BY peserta_id DES
         <td><?php echo $data["peserta_email"];?></td>
         <td><?php echo $data["peserta_telp"];?></td>
         <td><?php echo $data["peserta_alamat"];?></td>
+        <td>Pt. Showbiz</td>
+        <td>Sesi 1(23 Aug 18 - 23 Sep 18)</td>
+        <td>Ebiz</td>
+        <td>Softcopy</td>
         <td>
           <button type="button" class="edit btn btn-danger btn-sm" data-toggle="modal" data-target="#mEdit"><i class="fa fa-pen"></i> Edit</button>
         </td>
@@ -88,21 +96,94 @@ $query = mysqli_query($koneksi, "SELECT * FROM m_peserta ORDER BY peserta_id DES
     <div class="modal-dialog">
       <div class="modal-content">
 
+
         <div class="modal-header">
           <h4 class="modal-tittle">Registrasi No. 0123</h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-
         <div class="modal-body">
-          DATA FORM REGIS
+          <input type="hidden" name="edit_user_id" value="<?php echo $id?>">
+          <div class="form-row">
+            <div class="col-sm-3">
+              <label class="control-label">Jenis Peserta</label>
+            </div>
+            <div class="col-sm-6">
+              <input type="text" name="username" class="form-control" value="<?php echo $username;?>">
+            </div>
+          </div>
+        <div class="form-row">
+            <div class="col-sm-3">
+              <label class="control-label">Nama Peserta</label>
+            </div>
+            <div class="col-sm-6">
+              <input type="text" name="password" class="form-control" value="<?php echo $password;?>">
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="col-sm-3">
+              <label class="control-label">Email Peserta</label>
+            </div>
+            <div class="col-sm-6">
+              <input type="text" readonly class="form-control" value="<?php echo $level?>">
+            </div>
+          </div>
+        <div class="form-row">
+          <div class="col-sm-3">
+            <label class="control-label">No.Telepon</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" readonly class="form-control" value="<?php echo $level?>">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-sm-3">
+            <label class="control-label">Alamat</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" readonly class="form-control" value="<?php echo $level?>">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-sm-3">
+            <label class="control-label">Instansi</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" readonly class="form-control" value="<?php echo $level?>">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-sm-3">
+            <label class="control-label">Lokasi</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" readonly class="form-control" value="<?php echo $level?>">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-sm-3">
+            <label class="control-label">Toolss</label>
+          </div>
+          <div class="col-sm-6">
+            <input type="text" readonly class="form-control" value="<?php echo $level?>">
+          </div>
         </div>
 
+        </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary" data-dismiss="modal">Submit Data</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
         </div>
 
       </div>
     </div>
   </div>
   <!-- modal end -->
+      </div>
+    </div>
+  </form>
+</div>
+
+<!-- Modal Edit User End -->
+
+
 </div>

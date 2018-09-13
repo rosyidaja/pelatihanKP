@@ -1,6 +1,6 @@
 .sidenav {
     height: 100%;
-    width: 230px;
+    width: 14%;
     position: fixed;
     z-index: 1;
     background-image: url("../image/bg2.jpg");
@@ -34,9 +34,7 @@
 }
 
 .main {
-    margin-left: 230px; /* Same as the width of the sidenav */
-    padding-left: 30px;
-    padding-right: 30px;
+    margin-left: 190px; /* Same as the width of the sidenav */
     padding-top: 30px;
 }
 

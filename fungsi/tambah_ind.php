@@ -25,7 +25,7 @@ if (isset($_POST['nama'])) {
   <br/>marketting: ".$marketing.""
   ;
 
-  $sql = "INSERT INTO m_peserta (peserta_nama, peserta_email, peserta_alamat, peserta_telp, peserta_jenis, jns_pelatihan_kode, jadwal_id) VALUES ('".$nama."', '".$email."', '".$alamat."', '$telp', '".$pilihan."', '".$course."' ,'$schedule')";
+  $sql = "INSERT INTO m_peserta (peserta_nama, peserta_email, peserta_alamat, peserta_telp, peserta_jenis, jns_pelatihan_kode, jadwal_id, peserta_instansi_nama) VALUES ('".$nama."', '".$email."', '".$alamat."', '$telp', '".$pilihan."', '".$course."' ,'$schedule', '".$nama."')";
 
   if (mysqli_query($koneksi, $sql)) {
     // code...

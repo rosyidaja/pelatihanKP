@@ -72,7 +72,7 @@ if ($_SESSION['status']!="marketing") {
 	</head>
 	<body>
 
-		<div class="sidenav text-center col-sm-2">
+		<div class="sidenav text-center col-md-2">
 			<div class="text-center">
 				<img class="img-fluid" src="../../assets/image/logo.png" alt="Ebiz Infotama">
 			</div>
@@ -88,7 +88,7 @@ if ($_SESSION['status']!="marketing") {
 			</div>
 		</div>
 
-		<div class="main col-md-12">
+		<div class="main col-md-10">
 
 			<?php include($halaman); ?>
 

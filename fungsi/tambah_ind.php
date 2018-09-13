@@ -15,6 +15,7 @@ if (isset($_POST['nama'])) {
   ;
 
   $sql = "INSERT INTO m_peserta (peserta_nama, peserta_email, peserta_alamat, peserta_telp, peserta_jenis) VALUES ('".$nama."', '".$email."', '".$alamat."', '$telp', '".$pilihan."')";
+  $sql = "INSERT INTO m_peserta (peserta_nama, peserta_email, peserta_alamat, peserta_telp, peserta_jenis, jns_pelatihan_kode, jadwal_id, peserta_instansi_nama) VALUES ('".$nama."', '".$email."', '".$alamat."', '$telp', '".$pilihan."', '".$course."' ,'$schedule', '".$nama."')";
 
   if (mysqli_query($koneksi, $sql)) {
     // code...

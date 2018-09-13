@@ -167,7 +167,6 @@ $query = mysqli_query($koneksi, "SELECT * FROM m_peserta ORDER BY peserta_id DES
             <input type="text" readonly class="form-control" value="<?php echo $level?>">
           </div>
         </div>
-
         </div>
         <div class="modal-footer">
           <button type="submit" class="btn btn-primary" data-dismiss="modal">Submit Data</button>

@@ -8,7 +8,7 @@ if (isset($_POST['formValues'])) {
   $detail = $_POST['task'];
   //var_dump($detail);
   foreach($detail as $r => $row){
-    $sql = "INSERT INTO m_peserta (peserta_nama, peserta_email, peserta_alamat, peserta_telp, peserta_jenis, peserta_instansi_nama, jns_pelatihan_kode, jadwal_id)
+    $sql = "INSERT INTO m_peserta (peserta_nama, peserta_email, peserta_alamat, peserta_telp, peserta_jenis,peserta_instansi_nama)
     VALUES ('".$row['nama_peserta']."', '".$email_instansi."', '".$alamat_instansi."', '$nomer_instansi', '".$form_jenis."', '".$nama_instansi."', '".$row['jenis']."', '".$row['jadwal']."')";
     if (mysqli_query($koneksi, $sql)) {
       // code...

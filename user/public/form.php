@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
   <head>
     <meta name="description" content="Form Registrasi Pendaftaran Training">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -15,15 +14,73 @@
 
     <!-- Java script -->
     <script src="../../assets/js/bootstrap.bundle.js"></script>
+    <script>
+      $(document).ready(function() {
+        <?php 
+          include '../../config/koneksi.php';
+          //query dropdown
+          $drDown1 = mysqli_query($koneksi,"select * from m_jns_pelatihan order by jns_pelatihan_nama ASC");
+          $drDown2 = mysqli_query($koneksi,"select * from m_jadwal");
+          $drDown3 = mysqli_query($koneksi,"SELECT user_id, user_nama FROM m_user WHERE user_level='2'");
+          
+          $value_drowdown = '';
+          if(mysqli_num_rows($drDown1) > 0){
+            while ($testing = mysqli_fetch_assoc($drDown1)) {
+              // code...
+              $value_drowdown .= '<option value="'.$testing['jns_pelatihan_kode'].'">'.$testing['jns_pelatihan_nama'].'</option>';
+            }
+          }
+          $jadwal_dropdown = '';
+          if (mysqli_num_rows($drDown2) > 0) {
+            // code...
+            while ($rowJadwal = mysqli_fetch_assoc($drDown2)) {
+              // code...
+              $jadwal_dropdown .= '<option value="'.$rowJadwal['jadwal_id'].'">'.$rowJadwal['jadwal_sesi'].' : '.$rowJadwal['jadwal_mulai'].' - '.$rowJadwal['jadwal_selesai'].'</option>';
+            }
+          }
+
+          $marketing_dropdown = '';
+          if (mysqli_num_rows($drDown3) > 0) {
+            // code...
+            while ($rowC = mysqli_fetch_assoc($drDown3)) {
+              // code...
+              $marketing_dropdown .= '<option value="'.$rowC['user_id'].'">'.$rowC['user_nama'].'</option>';
+            }
+          }
+    
+        ?>
+        var res = '<?php echo $value_drowdown; ?>';
+        var res_jadwal = '<?php echo $jadwal_dropdown; ?>';
+        // add tabel
+        $("#tambah").on("click",function(){
+          var barisbaru = $("<tr>");
+          var kolom = "";
+          var counter = $("#tbpeserta tbody>tr").length + 1;
+          kolom += '<td><select class="form-control" id="pel' + counter + '">'+ res +'</select> </td>';
+          kolom += '<td>KODE_PEL</td>';
+          kolom += '<td><input type="text" class="form-control" id="nama' + counter + '" placeholder="Nama Peserta"></td>';
+          kolom += '<td><select class="form-control" id="jadwal' + counter + '">'+ res_jadwal +'</select></td>';
+          kolom += '<td><input type="text" class="form-control" id="cat' + counter + '" placeholder="Masukkan Catatan"></td>';
+          kolom += '<td><button type="button" class="hapus btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></td>';
+
+          barisbaru.append(kolom);
+          $("#tbpeserta tbody").append(barisbaru);
+
+        });
+
+        $("table.order-list").on("click", ".hapus", function(event){
+          $(this).closest("tr").remove();
+        });
+      });
+    </script>
     <script src="../../assets/js/register.js"></script>
 
     <title>Form Registrasi Training</title>
   </head>
 
   <body>
-
+  
     <?php
-    include '../../config/koneksi.php';
 
     if(isset($_GET['pesan'])){
       if($_GET['pesan'] == "sukses"){
@@ -31,10 +88,7 @@
       }
     }
 
-    // query dropdown
-    $drDown1 = mysqli_query($koneksi,"select * from m_jns_pelatihan order by jns_pelatihan_nama ASC");
-    $drDown2 = mysqli_query($koneksi,"select * from m_jadwal");
-    $drDown3 = mysqli_query($koneksi,"SELECT user_id, user_nama FROM m_user WHERE user_level='2'");
+    
     ?>
 
     <div class="container" id="start">
@@ -110,12 +164,7 @@
                 <div class="col-sm-3 form-group">
                   <select class="form-control" name="course" onchange="getval(this);" id="jns_pelatihan">
                     <?php
-                    if(mysqli_num_rows($drDown1) > 0){
-                      while ($rowA = mysqli_fetch_assoc($drDown1)) {
-                        // code...
-                        echo '<option value="'.$rowA[jns_pelatihan_kode].'">'.$rowA[jns_pelatihan_nama].'</option>';
-                      }
-                    }
+                   echo $value_drowdown;
                     ?>
                   </select>
                 </div>
@@ -125,13 +174,7 @@
                 <div class="col-sm-2 form-group">
                   <select class="form-control" name="schedule">
                     <?php
-                    if (mysqli_num_rows($drDown2) > 0) {
-                      // code...
-                      while ($rowB = mysqli_fetch_assoc($drDown2)) {
-                        // code...
-                        echo '<option value="'.$rowB[jadwal_id].'">'.$rowB[jadwal_sesi].' : '.$rowB[jadwal_mulai].' - '.$rowB[jadwal_selesai].'</option>';
-                      }
-                    }
+                      echo $jadwal_dropdown;
                     ?>
                   </select>
                 </div>
@@ -145,13 +188,7 @@
                   <select class="form-control" name="marketing">
                     <option value="0">Pilih Marketing</option>
                     <?php
-                    if (mysqli_num_rows($drDown3) > 0) {
-                      // code...
-                      while ($rowC = mysqli_fetch_assoc($drDown3)) {
-                        // code...
-                        echo '<option value="'.$rowC[user_id].'">'.$rowC[user_nama].'</option>';
-                      }
-                    }
+                      echo $marketing_dropdown;
                     ?>
                     <option value="internet">Internet</option>
                   </select>
@@ -285,7 +322,13 @@
                   <label class="control-label">Nama Marketing</label>
                 </div>
                 <div class="col-sm-8 form-group">
-                  <input type="text" id="nama_marketing" class="form-control" name="" value="" placeholder="Nama Marketing" >
+                  <select id="nama_marketing" class="form-control" name="nama_marketing">
+                    <option value="0">Pilih Marketing</option>
+                    <?php
+                      echo $marketing_dropdown;
+                    ?>
+                    <option value="internet">Internet</option>
+                  </select>
                 </div>
               </div>
 

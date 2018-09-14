@@ -34,6 +34,7 @@
     // query dropdown
     $drDown1 = mysqli_query($koneksi,"select * from m_jns_pelatihan order by jns_pelatihan_nama ASC");
     $drDown2 = mysqli_query($koneksi,"select * from m_jadwal");
+    $drDown3 = mysqli_query($koneksi,"SELECT user_id, user_nama FROM m_user WHERE user_level='2'");
     ?>
 
     <div class="container" id="start">
@@ -140,8 +141,20 @@
                 <div class="col-sm-3 form-group">
                   <label class="control-label">Nama Marketing</label>
                 </div>
-                <div class="col-sm-8 form-group">
-                  <input type="text" class="form-control" name="marketing" placeholder="Nama Marketing" required>
+                <div class="col-sm-3 form-group">
+                  <select class="form-control" name="marketing">
+                    <option value="0">Pilih Marketing</option>
+                    <?php
+                    if (mysqli_num_rows($drDown3) > 0) {
+                      // code...
+                      while ($rowC = mysqli_fetch_assoc($drDown3)) {
+                        // code...
+                        echo '<option value="'.$rowC[user_id].'">'.$rowC[user_nama].'</option>';
+                      }
+                    }
+                    ?>
+                    <option value="internet">Internet</option>
+                  </select>
                 </div>
               </div>
 

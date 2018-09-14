@@ -1,10 +1,10 @@
+<div class="">
+  <h1>Data Registrasi Training</h1>
+</div>
 <?php
 include '../../config/koneksi.php';
 $query = mysqli_query($koneksi, "SELECT * FROM m_peserta ORDER BY peserta_id ASC");
 ?>
-<div class="">
-  <h1>Data Registrasi Training</h1>
-</div>
 
 <!-- tabel start -->
 <div class="tbcourse">
@@ -29,8 +29,6 @@ $query = mysqli_query($koneksi, "SELECT * FROM m_peserta ORDER BY peserta_id ASC
   <?php $no=1;
     while ($data = mysqli_fetch_array($query)){
    ?>
-
-
 <tr>
       <td><?php echo $no ?></td>
       <td><?php echo $data["peserta_jenis"];?></td>
@@ -73,93 +71,10 @@ $query = mysqli_query($koneksi, "SELECT * FROM m_peserta ORDER BY peserta_id ASC
         </span>
       </td>
     </tr>
-
-
     <?php $no++; } ?>
     </tbody>
   </table>
 
     <?php } ?>
-
-<!-- table end -->
-
-<<<<<<< HEAD
-        <div class="modal-header">
-          <h4 class="modal-tittle">Registrasi No. 0123</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-        </div>
-        <div class="modal-body">
-          <input type="hidden" name="edit_user_id" value="<?php echo $id?>">
-          <div class="form-row">
-            <div class="col-sm-3">
-              <label class="control-label">Jenis Peserta</label>
-            </div>
-            <div class="col-sm-6">
-              <input type="text" name="username" class="form-control" value="<?php echo $username;?>">
-            </div>
-          </div>
-        <div class="form-row">
-            <div class="col-sm-3">
-              <label class="control-label">Nama Peserta</label>
-            </div>
-            <div class="col-sm-6">
-              <input type="text" name="password" class="form-control" value="<?php echo $password;?>">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="col-sm-3">
-              <label class="control-label">Email Peserta</label>
-            </div>
-            <div class="col-sm-6">
-              <input type="text" readonly class="form-control" value="<?php echo $level?>">
-            </div>
-          </div>
-        <div class="form-row">
-          <div class="col-sm-3">
-            <label class="control-label">No.Telepon</label>
-          </div>
-          <div class="col-sm-6">
-            <input type="text" readonly class="form-control" value="<?php echo $level?>">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="col-sm-3">
-            <label class="control-label">Alamat</label>
-          </div>
-          <div class="col-sm-6">
-            <input type="text" readonly class="form-control" value="<?php echo $level?>">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="col-sm-3">
-            <label class="control-label">Instansi</label>
-          </div>
-          <div class="col-sm-6">
-            <input type="text" readonly class="form-control" value="<?php echo $level?>">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="col-sm-3">
-            <label class="control-label">Lokasi</label>
-          </div>
-          <div class="col-sm-6">
-            <input type="text" readonly class="form-control" value="<?php echo $level?>">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="col-sm-3">
-            <label class="control-label">Toolss</label>
-          </div>
-          <div class="col-sm-6">
-            <input type="text" readonly class="form-control" value="<?php echo $level?>">
-          </div>
-        </div>
-        </div>
-        <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" data-dismiss="modal">Submit Data</button>
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
-        </div>
-  </div>
-
 
 </div>

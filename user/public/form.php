@@ -343,7 +343,7 @@
                       <tr>
                         <td style="vertical-align:top">4. </td>
                         <td>Apabila peserta mengalami keterlambatan dalam proses belajar mengajar karena kesalahannya sendiri,
-                        maka keterlambatan tersebut menjadi tanggungjawab peserta.</td>
+                        maka keterlambatan tersebut menjadi tanggung jawab peserta.</td>
                       </tr>
                       <tr>
                         <td style="vertical-align:top">5. </td>

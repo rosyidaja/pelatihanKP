@@ -9,12 +9,12 @@ if (isset($_POST['formValues'])) {
   //var_dump($detail);
   foreach($detail as $r => $row){
     $sql = "INSERT INTO m_peserta (peserta_nama, peserta_email, peserta_alamat, peserta_telp, peserta_jenis,peserta_instansi_nama)
-    VALUES ('".$row['nama_peserta']."', '".$email_instansi."', '".$alamat_instansi."', '$nomer_instansi', '".$form_jenis."', '".$nama_instansi."', '".$row['jenis']."', '".$row['jadwal']."')";
+    VALUES ('".$row['nama_peserta']."', '".$email_instansi."', '".$alamat_instansi."', '$nomer_instansi', '".$form_jenis."', '".$nama_instansi."')";
     if (mysqli_query($koneksi, $sql)) {
       // code...
       $last_id = mysqli_insert_id($koneksi);
       $jadwal = $row['jadwal'];
-      $sql_sertifikasi = "INSERT INTO t_sertifikasi (jadwal_id, peserta_id) VALUES ($jadwal, $last_id)";
+      $sql_sertifikasi = "INSERT INTO t_sertifikasi (id_jadwal, id_jns_pelatihan, id_peserta) VALUES ('".$row['jadwal']."','".$row['jenis']."', $last_id)";
       if (mysqli_query($koneksi, $sql_sertifikasi)) {
         // code..==
       } else {

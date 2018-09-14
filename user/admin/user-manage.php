@@ -3,10 +3,7 @@
 <?php
 
 include '../../config/koneksi.php';
-$datauser = mysqli_query($koneksi , "SELECT user_id, user_nama, user_pwd, level_user from m_user INNER JOIN m_level ON user_level=level_id");
-var_dump($datauser);
-return;
-
+$datauser = mysqli_query($koneksi , "SELECT user_id, user_nama, user_pwd, level_user, user_level from m_user INNER JOIN m_level ON user_level=level_id");
 
 echo '<table id="tbcourse" class="table table-stripped table-hover table-sm text-center">
 <thead>
@@ -27,6 +24,7 @@ while ($row = mysqli_fetch_array($datauser)) {
   $username = $row['user_nama'];
   $level = $row['level_user'];
   $password = $row['user_pwd'];
+  $level_id = $row['user_level'];
 
   echo "<tr>";
   echo "<td>$id</td>";
@@ -76,17 +74,7 @@ while ($row = mysqli_fetch_array($datauser)) {
               <label class="control-label">Level</label>
             </div>
             <div class="col-sm-4">
-              <input type="text" readonly class="form-control" value="<?php echo $level?>">
-            </div>
-          </div>
-          <div class="form-row">
-            <div class="col-sm-3">
-              <label class="control-label">Ganti Level</label>
-            </div>
-            <div class="col-sm-4">
-              <select class="form-control" name="level">
-                <option value="marketing">Marketing</option>
-              </select>
+              <input type="text" readonly class="form-control" value="<?php echo $level_id?>" name="level">
             </div>
           </div>
         </div>

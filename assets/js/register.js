@@ -94,11 +94,14 @@ $(function () {
   });
 
     $('.button-checkbox').each(function () {
-
+        // var $dataId = $(this).attr('data-id');
+        // var $disabledEdit = $('.apr-disabled');
         // Settings
         var $widget = $(this),
             $button = $widget.find('button'),
             $checkbox = $widget.find('input:checkbox'),
+            $dataId = $widget.attr('data-id'),
+            $disabledEdit = $('.apr-disabled'+$dataId),
             color = $button.data('color'),
             settings = {
                 on: {
@@ -115,6 +118,7 @@ $(function () {
               $checkbox.prop('checked', !$checkbox.is(':checked'));
               $checkbox.triggerHandler('change');
               updateDisplay();
+              $disabledEdit.prop('disabled', true);
               $button.prop('disabled', true);
             } else {
               return false;

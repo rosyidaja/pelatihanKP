@@ -43,26 +43,26 @@ $query2 = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.pe
           <td><?php echo $jenis; ?></td>
           <td><?php echo $instansi; ?></td>
           <td>
-            <select class="form-control apr-disabled" name="">
+            <select class="form-control apr-disabled<?php echo $no;?>" name="">
               <option value="">Pilih Jadwal</option>
             </select>
           </td>
           <td>
-            <input type="text" class="form-control apr-disabled" name="" value="" placeholder="Masukkan Lokasi">
+            <input type="text" class="form-control apr-disabled<?php echo $no;?>" name="" value="" placeholder="Masukkan Lokasi">
           </td>
           <td>
-            <select class="form-control apr-disabled" name="">
+            <select class="form-control apr-disabled<?php echo $no;?>" name="">
               <option value="">Pilih Tools</option>
             </select>
           </td>
           <td>
             <div class="btn-group btn-group-sm">
               <button type="button" class="btn btn-warning" data-target="#view<?php echo $jenis;?><?php echo $no;?>" data-toggle="modal"><i class="fa fa-eye"></i> View</button>
-              <button type="button" class="btn btn-danger apr-disabled" data-target="#edit<?php echo $no;?>" data-toggle="modal"><i class="fa fa-pen"></i> Edit</button>
+              <button type="button" class="btn btn-danger apr-disabled<?php echo $no;?>" data-target="#edit<?php echo $no;?>" data-toggle="modal"><i class="fa fa-pen"></i> Edit</button>
             </div>
           </td>
           <td>
-            <select class="form-control pterm apr-disabled" data-showbtn="btnCk<?php echo $no; ?>">
+            <select class="form-control pterm apr-disabled<?php echo $no;?>" data-showbtn="btnCk<?php echo $no; ?>">
               <option selected>Pilih Pembayaran</option>
               <option value="cod">COD</option>
               <option value="kontrak">Kontrak</option>
@@ -70,7 +70,7 @@ $query2 = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.pe
             </select>
           </td>
           <td>
-            <span class="button-checkbox" id="btnCk<?php echo $no; ?>" style="display:none">
+            <span class="button-checkbox" id="btnCk<?php echo $no; ?>" data-id="<?php echo $no; ?>" style="display:none">
               <button type="button" class="btn btn-sm" data-color="success">  Setujui</button>
               <input type="checkbox" style="display: none;" />
             </span>

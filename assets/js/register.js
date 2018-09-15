@@ -1,10 +1,46 @@
+// Coba jQuery
+$(function() {
+    $('body').fadeIn("slow");
+});
+
+$(document).ready(function(){
+
+  //approval button
+  $('.pterm').on('change', function() {
+    var btnId = $(this).attr('data-showbtn');
+    // var selVal = $(this).attr('value');
+    var selVal = this.selectedIndex;
+    if (selVal == "") {
+      $('#'+btnId).fadeOut("slow");
+    } else {
+      $('#'+btnId).fadeIn("slow");
+    }
+  });
+
+  // radio button jenis form
+  $('#form-individu').on('click', function() {
+    // $('#instansi').slideUp("slow").delay("slow");
+    // $('#individu').delay("slow").slideDown("slow");
+    $('#instansi').fadeOut("slow");
+    $('#individu').delay("slow").fadeIn("slow");
+  });
+
+  $('#form-instansi').on('click', function() {
+    // $('#individu').slideUp("slow").delay("slow");
+    // $('#instansi').delay("slow").slideDown("slow");
+    $('#individu').fadeOut("slow");
+    $('#instansi').delay("slow").fadeIn("slow");
+  });
+
+});
+
 // checkbox
 $(function () {
   //submit
   $('#btnFrmSubmit').click(function () {
       /* Checking if more than 0 rows exists */
       if ($("#tbpeserta tbody>tr").length > 0) {
-          var info = {};          
+          var info = {};
           info.nama_marketing = $("[id*=nama_marketing]").val();
           info.nama_instansi = $("[id*=nama_instansi]").val();
           info.email_instansi = $("[id*=email_instansi]").val();
@@ -75,9 +111,14 @@ $(function () {
 
         // Event Handlers
         $button.on('click', function () {
-            $checkbox.prop('checked', !$checkbox.is(':checked'));
-            $checkbox.triggerHandler('change');
-            updateDisplay();
+            if (confirm("Apakah anda yakin akan menyetujui data ini ?\nData tidak dapat di ubah setelah di setujui")) {
+              $checkbox.prop('checked', !$checkbox.is(':checked'));
+              $checkbox.triggerHandler('change');
+              updateDisplay();
+              $button.prop('disabled', true);
+            } else {
+              return false;
+            }
         });
         $checkbox.on('change', function () {
             updateDisplay();
@@ -121,18 +162,6 @@ $(function () {
         init();
     });
 });
-
-// jenis form
-function hideIndividu()
-{
-  document.getElementById("individu").style.display="none";
-  document.getElementById("instansi").style.display="unset";
-}
-function hideInstansi()
-{
-  document.getElementById("instansi").style.display="none";
-  document.getElementById("individu").style.display="unset";
-}
 
 // dropdown function
 function getval(sel)

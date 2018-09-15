@@ -27,7 +27,8 @@ if (isset($_POST['login'])) {
 
 	if (mysqli_num_rows($data) == 0) {
 		// code...
-		echo '<script language="javascript">alert("Login gagal! User not found");</script>';
+		header("location:../login.php?pesan=belum_login");
+
 	} else {
 		// code...
 		$row = mysqli_fetch_assoc($data);

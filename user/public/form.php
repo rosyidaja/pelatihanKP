@@ -16,13 +16,13 @@
     <script src="../../assets/js/bootstrap.bundle.js"></script>
     <script>
       $(document).ready(function() {
-        <?php 
+        <?php
           include '../../config/koneksi.php';
           //query dropdown
           $drDown1 = mysqli_query($koneksi,"select * from m_jns_pelatihan order by jns_pelatihan_nama ASC");
           $drDown2 = mysqli_query($koneksi,"select * from m_jadwal");
           $drDown3 = mysqli_query($koneksi,"SELECT user_id, user_nama FROM m_user WHERE user_level='2'");
-          
+
           $value_drowdown = '';
           if(mysqli_num_rows($drDown1) > 0){
             while ($testing = mysqli_fetch_assoc($drDown1)) {
@@ -47,7 +47,7 @@
               $marketing_dropdown .= '<option value="'.$rowC['user_id'].'">'.$rowC['user_nama'].'</option>';
             }
           }
-    
+
         ?>
         var res = '<?php echo $value_drowdown; ?>';
         var res_jadwal = '<?php echo $jadwal_dropdown; ?>';
@@ -79,7 +79,7 @@
   </head>
 
   <body>
-  
+
     <?php
 
     if(isset($_GET['pesan'])){
@@ -88,7 +88,7 @@
       }
     }
 
-    
+
     ?>
 
     <div class="container" id="start">
@@ -102,18 +102,16 @@
           </header>
 
           <article class="card-body">
-            <form class="form-horizontal" action="" method="post">
 
-              <div class="form-row">
-                <div class="col-sm-3 form-group">
-                  <label class="control-label">Jenis Form</label>
-                </div>
-                <div class="col-sm-8 form-group">
-                  <label class="form-check form-check-inline"> <input onClick="hideInstansi()" class="form-check-input" type="radio" name="pilihan" checked> <span class="form-check-label"> Individu </span> </label>
-                  <label class="form-check form-check-inline"> <input onClick="hideIndividu()" class="form-check-input" type="radio" name="pilihan"> <span class="form-check-label"> Instansi </span> </label>
-                </div>
+            <div class="form-row">
+              <div class="col-sm-3 form-group">
+                <label class="control-label">Jenis Form</label>
               </div>
-            </form>
+              <div class="col-sm-8 form-group">
+                <label class="form-check form-check-inline"> <input id="form-individu" name="rdbtn" class="form-check-input" type="radio" checked> <span class="form-check-label"> Individu </span> </label>
+                <label class="form-check form-check-inline"> <input id="form-instansi" name="rdbtn" class="form-check-input" type="radio"> <span class="form-check-label"> Instansi </span> </label>
+              </div>
+            </div>
 
             <!-- start form individu -->
 

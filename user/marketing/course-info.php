@@ -43,35 +43,35 @@ $query2 = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.pe
           <td><?php echo $jenis; ?></td>
           <td><?php echo $instansi; ?></td>
           <td>
-            <select class="form-control" name="">
+            <select class="form-control apr-disabled" name="">
               <option value="">Pilih Jadwal</option>
             </select>
           </td>
           <td>
-            <input type="text" class="form-control" name="" value="" placeholder="Masukkan Lokasi">
+            <input type="text" class="form-control apr-disabled" name="" value="" placeholder="Masukkan Lokasi">
           </td>
           <td>
-            <select class="form-control" name="">
+            <select class="form-control apr-disabled" name="">
               <option value="">Pilih Tools</option>
             </select>
           </td>
           <td>
             <div class="btn-group btn-group-sm">
               <button type="button" class="btn btn-warning" data-target="#view<?php echo $jenis;?><?php echo $no;?>" data-toggle="modal"><i class="fa fa-eye"></i> View</button>
-              <button type="button" class="btn btn-danger" data-target="#edit<?php echo $no;?>" data-toggle="modal"><i class="fa fa-pen"></i> Edit</button>
+              <button type="button" class="btn btn-danger apr-disabled" data-target="#edit<?php echo $no;?>" data-toggle="modal"><i class="fa fa-pen"></i> Edit</button>
             </div>
           </td>
           <td>
-            <select class="form-control" id="pterm" onclick="payTerm()">
-              <option value="0" active>Pilih Pembayaran</option>
+            <select class="form-control pterm apr-disabled" data-showbtn="btnCk<?php echo $no; ?>">
+              <option selected>Pilih Pembayaran</option>
               <option value="cod">COD</option>
               <option value="kontrak">Kontrak</option>
               <option value="H - 1">H - 1</option>
             </select>
           </td>
           <td>
-            <span class="button-checkbox" id="btnCk" style="visibility: hidden;">
-              <button type="button" class="btn btn-sm" data-color="success">  Approve</button>
+            <span class="button-checkbox" id="btnCk<?php echo $no; ?>" style="display:none">
+              <button type="button" class="btn btn-sm" data-color="success">  Setujui</button>
               <input type="checkbox" style="display: none;" />
             </span>
           </td>
@@ -175,7 +175,7 @@ $query2 = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.pe
                   </tr>
                 </thead>
                 <tbody>
-                  <?php $qmtable = mysqli_query($koneksi, "SELECT p.peserta_nama, t.id_peserta, t.id_jns_pelatihan, jp.jns_pelatihan_nama FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jns_pelatihan jp ON t.id_jns_pelatihan=jp.jns_pelatihan_kode) ON p.peserta_id=t.id_peserta ORDER BY jp.jns_pelatihan_kode ASC"); ?>
+                  <?php $qmtable = mysqli_query($koneksi, "SELECT p.peserta_nama, t.id_peserta, t.id_jns_pelatihan, jp.jns_pelatihan_nama FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jns_pelatihan jp ON t.id_jns_pelatihan=jp.jns_pelatihan_kode) ON p.peserta_id=t.id_peserta WHERE p.peserta_instansi_nama='$instansi' ORDER BY jp.jns_pelatihan_kode ASC"); ?>
                   <?php if (mysqli_num_rows($qmtable)>0) { ?>
 
                     <?php while ($data = mysqli_fetch_array($qmtable)) {

@@ -1,3 +1,8 @@
+<?php 
+    include '../../config/koneksi.php';
+    $query= mysqli_query($koneksi, "SELECT jp.jns_pelatihan_nama, j.jadwal_sesi, j.jadwal_mulai, j.jadwal_selesai, p.peserta_nama,p.peserta_instansi_nama , t.lokasi, t.trainer, t.tools FROM m_jns_pelatihan jp INNER JOIN(m_jadwal j INNER JOIN (t_sertifikasi t INNER JOIN m_peserta p ON t.id_peserta=p.peserta_id)ON j.jadwal_id=t.id_jadwal)ON jp.jns_pelatihan_kode=t.id_jns_pelatihan GROUP BY p.peserta_instansi_nama ORDER BY jp.jns_pelatihan_nama ASC")
+ ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
 	<head>
@@ -48,19 +53,33 @@
       </tr>
     </thead>
 
+<?php if (mysqli_num_rows($query)>0) { ?>
     <tbody>
+        <?php $no=1; ?>
+        <?php while ($data = mysqli_fetch_array($query)) {
+          // code...
+          $jenis = $data["jns_pelatihan_nama"];
+          $jadwal = $data["jadwal_sesi"];
+          $jadwal1 = $data["jadwal_mulai"];
+          $jadwal2 = $data["jadwal_selesai"];
+          $nama = $data["peserta_instansi_nama"];
+          $lokasi = $data["lokasi"];
+          $trainer = $data["trainer"];
+          $tools = $data["tools"];     
+        ?>
       <tr>
-        <td>1.</td>
-        <td>Zend PHP</td>
-        <td>Sesi 1(21-08-2018 / 1-01-2019)</td>
-        <td>Archie</td>
+        <td><?php echo $no; ?></td>
+        <td><?php echo $jenis; ?></td>
+        <td><?php echo $jadwal," (", $jadwal1 , "-" , $jadwal2, ")"; ?></td>
+        <td><?php echo $nama;?></td>
         <td>30 Orang</td>
-        <td>Ebiz</td>
-        <td>Achmad Subekti</td>
-        <td>Softcopy</td>
+        <td><?php echo $lokasi; ?></td>
+        <td><?php echo $trainer; ?></td>
+        <td><?php echo $tools; ?></td>
       </tr>
+      <?php $no++; } ?>
     </tbody>
-
+<?php } ?>
   </table>
                 </div>
             </div>

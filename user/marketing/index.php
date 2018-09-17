@@ -31,11 +31,6 @@ if (!isset($_GET['halaman'])) {
 			$halaman = 'logout.php';
 			break;
 
-		case 'detail':
-			// code...
-			$halaman = 'detail_form.php';
-			break;
-
 		default:
 			// code...
 			$halaman = 'error.php';
@@ -83,7 +78,6 @@ if ($_SESSION['status']!="marketing") {
 				<li><a href="?halaman=course-info">Data Registrasi</a></li>
 				<li><a href="?halaman=akun-info">Pengaturan Akun</a></li>
 				<li><a href="?halaman=logout">Logout</a></li>
-				<li ><a href="?halaman=detail">detail</a></li>
 			</ul>
 			</div>
 		</div>

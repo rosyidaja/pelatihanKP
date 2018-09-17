@@ -1,6 +1,3 @@
-<?php
-$queryIns = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, p.peserta_instansi_nama, j.jadwal_sesi, t.id_peserta, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
-?>
 <!-- modal loop start -->
 <?php if (mysqli_num_rows($queryIns)>0) { ?>
 
@@ -29,7 +26,7 @@ $queryIns = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.
         <!-- modal header end -->
         <!-- modal body start -->
         <div class="modal-body">
-          <input type="hidden" name="view_instansi_id" value="<?php echo $id2;?>">
+          <input type="hidden" name="view_instansi_id" value="<?php echo $id;?>">
           <div class="form-row">
             <div class="col-sm-3">
               <label class="control-label">Peserta</label>

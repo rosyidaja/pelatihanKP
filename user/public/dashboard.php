@@ -1,6 +1,7 @@
 <?php 
     include '../../config/koneksi.php';
-    $query= mysqli_query($koneksi, "SELECT jp.jns_pelatihan_nama, j.jadwal_sesi, j.jadwal_mulai, j.jadwal_selesai, p.peserta_nama,p.peserta_instansi_nama , t.lokasi, t.trainer, t.tools FROM m_jns_pelatihan jp INNER JOIN(m_jadwal j INNER JOIN (t_sertifikasi t INNER JOIN m_peserta p ON t.id_peserta=p.peserta_id)ON j.jadwal_id=t.id_jadwal)ON jp.jns_pelatihan_kode=t.id_jns_pelatihan GROUP BY p.peserta_instansi_nama ORDER BY jp.jns_pelatihan_nama ASC")
+    $query= mysqli_query($koneksi, "SELECT jp.jns_pelatihan_nama, j.jadwal_sesi, j.jadwal_mulai, j.jadwal_selesai, p.peserta_nama,p.peserta_instansi_nama ,COUNT(peserta_id) as jumlah, t.lokasi, t.trainer, t.tools 
+        FROM m_jns_pelatihan jp INNER JOIN(m_jadwal j INNER JOIN (t_sertifikasi t INNER JOIN m_peserta p ON t.id_peserta=p.peserta_id)ON j.jadwal_id=t.id_jadwal)ON jp.jns_pelatihan_kode=t.id_jns_pelatihan GROUP BY p.peserta_instansi_nama ORDER BY jp.jns_pelatihan_kode ASC, p.peserta_id ASC ");
  ?>
 
 <!DOCTYPE html>
@@ -65,14 +66,15 @@
           $nama = $data["peserta_instansi_nama"];
           $lokasi = $data["lokasi"];
           $trainer = $data["trainer"];
-          $tools = $data["tools"];     
+          $tools = $data["tools"];
+          $jumlah = $data["jumlah"];     
         ?>
       <tr>
         <td><?php echo $no; ?></td>
         <td><?php echo $jenis; ?></td>
         <td><?php echo $jadwal," (", $jadwal1 , "-" , $jadwal2, ")"; ?></td>
         <td><?php echo $nama;?></td>
-        <td>30 Orang</td>
+        <td><?php echo $jumlah; ?></td>
         <td><?php echo $lokasi; ?></td>
         <td><?php echo $trainer; ?></td>
         <td><?php echo $tools; ?></td>

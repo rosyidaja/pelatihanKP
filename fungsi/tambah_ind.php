@@ -5,6 +5,7 @@ include '../config/koneksi.php';
 if (isset($_POST['nama'])) {
   // code...
   $nama = $_POST['nama'];
+  $noregis = $_POST['noregis'];
   $pilihan = $_POST['pilihan'];
   $email = $_POST['email'];
   $alamat = $_POST['alamat'];
@@ -20,7 +21,7 @@ if (isset($_POST['nama'])) {
   if (mysqli_query($koneksi, $sql)) {
     // code...
     $last_id = mysqli_insert_id($koneksi);
-    $sql_sertifikasi = "INSERT INTO t_sertifikasi (id_jadwal, id_jns_pelatihan, id_peserta) VALUES ($schedule, '".$course."', $last_id)";
+    $sql_sertifikasi = "INSERT INTO t_sertifikasi (id_jadwal, id_jns_pelatihan, id_peserta, reg_no, tgl_registrasi) VALUES ($schedule, '".$course."', $last_id, $noregis, curdate())";
 
     if (mysqli_query($koneksi, $sql_sertifikasi)) {
       // code...

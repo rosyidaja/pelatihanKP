@@ -35,7 +35,7 @@
               <label> : </label>
             </div>
             <div class="col-sm-4">
-              <label class="control-label"><?php echo $instansi; ?></label>
+              <input type="text" class="form-control" id="" value="<?php echo $instansi; ?>">
             </div>
           </div>
 
@@ -47,7 +47,7 @@
               <label> : </label>
             </div>
             <div class="col-sm-4">
-              <label class="control-label"><?php echo $telp; ?></label>
+              <input type="text" class="form-control" id="" value="<?php echo $telp; ?>">
             </div>
           </div>
 
@@ -59,7 +59,7 @@
               <label> : </label>
             </div>
             <div class="col-sm-4">
-              <label class="control-label"><?php echo $email; ?></label>
+              <input type="text" class="form-control" id="" value="<?php echo $email; ?>">
             </div>
           </div>
 
@@ -71,10 +71,16 @@
               <label> : </label>
             </div>
             <div class="col-sm-4">
-              <label class="control-label"><?php echo $alamat; ?></label>
+              <input type="text" class="form-control" id="" value="<?php echo $alamat; ?>">
             </div>
           </div>
 
+          <div class="form-row">
+            <div class="col-sm-3">
+              <br>
+              <label class="control-label"> <h5>Daftar Peserta</h5> </label>
+            </div>
+          </div>
           <div class="tbdtlpsrta table-responsive">
 
             <table class="table table-striped table-hover table-sm text-center">
@@ -98,10 +104,10 @@
                     $mtable_nama = $data["peserta_nama"];
                   ?>
                   <tr>
-                    <td><?php echo $mtable_pel; ?></td>
-                    <td><?php echo $mtable_pel_kode; ?></td>
-                    <td><?php echo $mtable_id; ?></td>
-                    <td><?php echo $mtable_nama; ?></td>
+                    <td class="align-middle"><?php echo $mtable_pel; ?></td>
+                    <td class="align-middle"><?php echo $mtable_pel_kode; ?></td>
+                    <td class="align-middle"><?php echo $mtable_id; ?></td>
+                    <td class="align-middle"> <input type="text" id="" class="form-control" value="<?php echo $mtable_nama; ?>"> </td>
                   </tr>
                   <?php } ?>
 

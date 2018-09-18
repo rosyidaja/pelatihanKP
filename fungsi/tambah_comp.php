@@ -14,7 +14,7 @@ if (isset($_POST['formValues'])) {
       // code...
       $last_id = mysqli_insert_id($koneksi);
       $jadwal = $row['jadwal'];
-      $sql_sertifikasi = "INSERT INTO t_sertifikasi (id_jadwal, id_jns_pelatihan, id_peserta, id_marketing, tgl_registrasi) VALUES ('".$row['jadwal']."','".$row['jenis']."', $last_id, $nama_marketing, curdate())";
+      $sql_sertifikasi = "INSERT INTO t_sertifikasi (id_jadwal, id_jns_pelatihan, id_peserta, id_marketing, tgl_registrasi, reg_no) VALUES ('".$row['jadwal']."','".$row['jenis']."', $last_id, $nama_marketing, curdate(), $noregis)";
       if (mysqli_query($koneksi, $sql_sertifikasi)) {
         // code..==
       } else {

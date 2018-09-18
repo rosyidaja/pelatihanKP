@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+include '../../config/koneksi.php';
+$sql_noregis = mysqli_query($koneksi, "SELECT COALESCE(MAX(reg_no), 0) + 1 AS noReg_baru FROM t_sertifikasi");
+$noregBaru = mysqli_fetch_assoc($sql_noregis);
+?>
   <head>
     <meta name="description" content="Form Registrasi Pendaftaran Training">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +22,7 @@
     <script>
       $(document).ready(function() {
         <?php
-          include '../../config/koneksi.php';
+
           //query dropdown
           $drDown1 = mysqli_query($koneksi,"select * from m_jns_pelatihan order by jns_pelatihan_nama ASC");
           $drDown2 = mysqli_query($koneksi,"select * from m_jadwal");
@@ -116,6 +121,8 @@
             <!-- start form individu -->
 
             <form class="form-horizontal" action="../../fungsi/tambah_ind.php" method="post">
+
+              <input type="hidden" name="noregis" value="<?php echo $noregBaru['noReg_baru']; ?>">
 
               <div id="individu">
               <div class="form-row">
@@ -276,6 +283,10 @@
             <!-- start form instansi -->
 
             <form class="form-horizontal" id="FormComp" action="../../fungsi/tambah_comp.php" method="post">
+
+
+
+              <input type="hidden" id="noregis" value="<?php echo $noregBaru['noReg_baru']; ?>">
 
               <div id="instansi" style="display:none">
                 <input type="hidden" id="form_jenis" name="" value="instansi">

@@ -5,6 +5,16 @@ $queryInd = mysqli_query($koneksi, "SELECT p.peserta_nama, p.peserta_jenis, p.pe
 $queryIns = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, p.peserta_instansi_nama, j.jadwal_sesi, t.id_peserta, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
 $queryIndEdit = mysqli_query($koneksi, "SELECT p.peserta_nama, p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, j.jadwal_sesi, t.id_peserta, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
 $queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, p.peserta_instansi_nama, j.jadwal_sesi, t.id_peserta, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
+
+$drDown2 = mysqli_query($koneksi,"select * from m_jadwal");
+$jadwal_dropdown = '';
+if (mysqli_num_rows($drDown2) > 0) {
+  // code...
+  while ($rowJadwal = mysqli_fetch_assoc($drDown2)) {
+    // code...
+    $jadwal_dropdown .= '<option value="'.$rowJadwal['jadwal_id'].'">'.$rowJadwal['jadwal_sesi'].' : '.$rowJadwal['jadwal_mulai'].' - '.$rowJadwal['jadwal_selesai'].'</option>';
+  }
+}
 ?>
 
 <div class="header">
@@ -46,16 +56,22 @@ $queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat
           <td><?php echo $jenis; ?></td>
           <td><?php echo $instansi; ?></td>
           <td>
-            <select class="form-control apr-disabled<?php echo $no;?>" name="">
+            <select class="form-control apr-disabled<?php echo $no;?>" id="jadwal">
               <option value="">Pilih Jadwal</option>
+              <?php
+                echo $jadwal_dropdown;
+              ?>
             </select>
           </td>
           <td>
-            <input type="text" class="form-control apr-disabled<?php echo $no;?>" name="" value="" placeholder="Masukkan Lokasi">
+            <input type="text" class="form-control apr-disabled<?php echo $no;?>" id="lokasi" placeholder="Masukkan Lokasi">
+            <input type="hidden" id="noregis" value="1">
           </td>
           <td>
-            <select class="form-control apr-disabled<?php echo $no;?>" name="">
+            <select class="form-control apr-disabled<?php echo $no;?>" id="tools">
               <option value="">Pilih Tools</option>
+              <option value="softcopy">Softcopy</option>
+              <option value="hardcopy">Hardcopy</option>
             </select>
           </td>
           <td>
@@ -65,7 +81,7 @@ $queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat
             </div>
           </td>
           <td>
-            <select class="form-control pterm apr-disabled<?php echo $no;?>" data-showbtn="btnCk<?php echo $no; ?>">
+            <select id="pembayaran" class="form-control pterm apr-disabled<?php echo $no;?>" data-showbtn="btnCk<?php echo $no; ?>">
               <option selected>Pilih Pembayaran</option>
               <option value="cod">COD</option>
               <option value="kontrak">Kontrak</option>

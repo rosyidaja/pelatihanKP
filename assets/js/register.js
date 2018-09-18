@@ -115,6 +115,29 @@ $(function () {
         // Event Handlers
         $button.on('click', function () {
             if (confirm("Apakah anda yakin akan menyetujui data ini ?\nData tidak dapat di ubah setelah di setujui")) {
+
+              var approveM = {};
+              approveM.id = $("[id*=noregis]").val();
+              approveM.jadwal = $("[id*=jadwal]").val();
+              approveM.lokasi = $("[id*=lokasi]").val();
+              approveM.tools = $("[id*=tools]").val();
+              approveM.pembayaran = $("[id*=pembayaran]").val();
+
+              $.ajax({
+                type: 'POST',
+                data: {
+                  marketingApr : approveM
+                  },
+                url: '../../fungsi/marketing_datreg.php',
+                success: function(result) {
+                  if (result != 1) {
+                    alert("Data gagal dihapus, Silahkan coba kembali");
+                  } else {
+
+                  }
+                }
+              });
+
               $checkbox.prop('checked', !$checkbox.is(':checked'));
               $checkbox.triggerHandler('change');
               updateDisplay();

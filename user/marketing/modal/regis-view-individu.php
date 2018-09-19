@@ -4,6 +4,7 @@
   <?php $modalloop = 1; ?>
   <?php while ($data = mysqli_fetch_array($queryInd)) {
     // code...
+    $noregis = $data["reg_no"];
     $id = $data["id_peserta"];
     $nama = $data["peserta_nama"];
     $jenis = $data["peserta_jenis"];
@@ -15,12 +16,12 @@
 
   <!-- Modal view individu Start -->
 
-  <div class="modal fade" id="viewindividu<?php echo $modalloop;?>">
+  <div class="modal fade" id="viewindividu<?php echo $noregis;?>">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <!-- modal header start -->
         <div class="modal-header">
-          <h4>Data Registrasi NO.<?php echo $modalloop; ?></h4>
+          <h4>Data Registrasi NO.<?php echo $noregis; ?></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <!-- modal header end -->

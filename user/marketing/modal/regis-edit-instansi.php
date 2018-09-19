@@ -4,6 +4,7 @@
   <?php $modalloop = 1; ?>
   <?php while ($data = mysqli_fetch_array($queryInsEdit)) {
     // code...
+    $noregis = $data["reg_no"];
     $id = $data["id_peserta"];
     $jenis = $data["peserta_jenis"];
     $instansi = $data["peserta_instansi_nama"];
@@ -15,12 +16,12 @@
 
   <!-- Modal view instansi End -->
 
-  <div class="modal fade" id="editinstansi<?php echo $modalloop;?>">
+  <div class="modal fade" id="editinstansi<?php echo $noregis;?>">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <!-- modal header start -->
         <div class="modal-header">
-          <h4>Data Registrasi NO.<?php echo $modalloop; ?></h4>
+          <h4>Data Registrasi NO.<?php echo $noregis; ?></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <!-- modal header end -->

@@ -40,6 +40,7 @@ if (isset($_POST['login'])) {
 		} else {
 			// code...
 			$_SESSION['username']=$username;
+			$_SESSION['m-id']=$row['user_id'];
 			$_SESSION['status']="marketing";
 			echo '<script language="javascript">alert("Anda berhasil Login Marketing!"); document.location="../user/marketing/index.php";</script>';
 		}

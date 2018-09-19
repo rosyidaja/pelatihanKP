@@ -118,7 +118,7 @@ $(function () {
             };
 
         //hide if approved
-        if ($dataApr == "1") {
+        if ($dataApr > "0") {
           $checkbox.prop('checked', !$checkbox.is(':checked'));
           $checkbox.triggerHandler('change');
           updateDisplay();

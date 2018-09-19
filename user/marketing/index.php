@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 $halaman = "";
 if (!isset($_GET['halaman'])) {
@@ -39,7 +40,7 @@ if (!isset($_GET['halaman'])) {
 	}
 }
 
-session_start();
+
 if ($_SESSION['status']!="marketing") {
 	header("location:../../login.php?pesan=belum_login");
 }

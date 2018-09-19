@@ -1,7 +1,6 @@
 <?php 
     include '../../config/koneksi.php';
-    $query= mysqli_query($koneksi, "SELECT jp.jns_pelatihan_nama, j.jadwal_sesi, j.jadwal_mulai, j.jadwal_selesai, p.peserta_nama,p.peserta_instansi_nama ,COUNT(peserta_id) as jumlah, t.lokasi, t.trainer, t.tools 
-        FROM m_jns_pelatihan jp INNER JOIN(m_jadwal j INNER JOIN (t_sertifikasi t INNER JOIN m_peserta p ON t.id_peserta=p.peserta_id)ON j.jadwal_id=t.id_jadwal)ON jp.jns_pelatihan_kode=t.id_jns_pelatihan GROUP BY p.peserta_instansi_nama ORDER BY jp.jns_pelatihan_kode ASC, p.peserta_id ASC ");
+    $query= mysqli_query($koneksi, "SELECT jp.jns_pelatihan_nama, j.jadwal_sesi, j.jadwal_mulai, j.jadwal_selesai, p.peserta_nama,p.peserta_instansi_nama ,COUNT(peserta_id) as jumlah, t.lokasi, t.trainer, t.tools ,t.reg_no FROM m_jns_pelatihan jp INNER JOIN(m_jadwal j INNER JOIN (t_sertifikasi t INNER JOIN m_peserta p ON t.id_peserta=p.peserta_id)ON j.jadwal_id=t.id_jadwal)ON jp.jns_pelatihan_kode=t.id_jns_pelatihan GROUP BY t.reg_no,jp.jns_pelatihan_nama,j.jadwal_sesi ORDER BY jp.jns_pelatihan_nama ASC, t.reg_no ASC");
  ?>
 
 <!DOCTYPE html>

@@ -99,9 +99,12 @@ $(function () {
         // var $dataId = $(this).attr('data-id');
         // var $disabledEdit = $('.apr-disabled');
         // Settings
+
         var $widget = $(this),
             $button = $widget.find('button'),
             $checkbox = $widget.find('input:checkbox'),
+            $dataApr = $widget.attr('data-apr'),
+            $dataField = $widget.attr('data-field'),
             $dataId = $widget.attr('data-id'),
             $disabledEdit = $('.apr-disabled'+$dataId),
             color = $button.data('color'),
@@ -114,16 +117,29 @@ $(function () {
                 }
             };
 
+        //hide if approved
+        if ($dataApr == "1") {
+          $checkbox.prop('checked', !$checkbox.is(':checked'));
+          $checkbox.triggerHandler('change');
+          updateDisplay();
+          $disabledEdit.prop('disabled', true);
+          $button.prop('disabled', true);
+          $widget.show();
+        }
+
         // Event Handlers
         $button.on('click', function () {
             if (confirm("Apakah anda yakin akan menyetujui data ini ?\nData tidak dapat di ubah setelah di setujui")) {
 
+              $widget.attr("data-apr", "1");
+
               var approveM = {};
-              approveM.id = $("[id*=noregis]").val();
-              approveM.jadwal = $("[id*=jadwal]").val();
-              approveM.lokasi = $("[id*=lokasi]").val();
-              approveM.tools = $("[id*=tools]").val();
-              approveM.pembayaran = $("[id*=pembayaran]").val();
+              approveM.id = $("[id*=noregis"+$dataField+"]").val();
+              approveM.jadwal = $("[id*=jadwal"+$dataField+"]").val();
+              approveM.lokasi = $("[id*=lokasi"+$dataField+"]").val();
+              approveM.tools = $("[id*=tools"+$dataField+"]").val();
+              approveM.pembayaran = $("[id*=pembayaran"+$dataField+"]").val();
+              approveM.approval = $widget.attr('data-apr');
 
               $.ajax({
                 type: 'POST',

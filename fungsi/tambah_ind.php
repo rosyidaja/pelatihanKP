@@ -21,7 +21,7 @@ if (isset($_POST['nama'])) {
   if (mysqli_query($koneksi, $sql)) {
     // code...
     $last_id = mysqli_insert_id($koneksi);
-    $sql_sertifikasi = "INSERT INTO t_sertifikasi (id_jadwal, id_jns_pelatihan, id_peserta, reg_no, tgl_registrasi) VALUES ($schedule, '".$course."', $last_id, $noregis, curdate())";
+    $sql_sertifikasi = "INSERT INTO t_sertifikasi (id_jadwal, id_jns_pelatihan, id_peserta, reg_no, tgl_registrasi, id_marketing) VALUES ($schedule, '".$course."', $last_id, $noregis, curdate(), $marketing)";
 
     if (mysqli_query($koneksi, $sql_sertifikasi)) {
       // code...

@@ -35,6 +35,7 @@ if (isset($_POST['login'])) {
 		if ($row['user_level'] == "1") {
 			// code...
 			$_SESSION['username']=$username;
+			$_SESSION['m-id']=$row['user_id'];
 			$_SESSION['status']="admin";
 			echo '<script language="javascript">alert("Anda berhasil Login Admin!"); document.location="../user/admin/index.php";</script>';
 		} else {

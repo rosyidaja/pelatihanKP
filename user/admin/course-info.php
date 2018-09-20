@@ -1,10 +1,13 @@
 <?php
 include '../../config/koneksi.php';
-$query = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_instansi_nama, j.jadwal_sesi, t.reg_no, t.id_peserta, t.id_jadwal, t.approve FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta GROUP BY p.peserta_instansi_nama ORDER BY p.peserta_id ASC");
-$queryInd = mysqli_query($koneksi, "SELECT p.peserta_nama, p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, j.jadwal_sesi, t.id_peserta, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
-$queryIns = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, p.peserta_instansi_nama, j.jadwal_sesi, t.id_peserta, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
-$queryIndEdit = mysqli_query($koneksi, "SELECT p.peserta_nama, p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, j.jadwal_sesi, t.id_peserta, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
-$queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, p.peserta_instansi_nama, j.jadwal_sesi, t.id_peserta, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
+
+$mID = $_SESSION['m-id'];
+
+$query = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_instansi_nama, j.jadwal_sesi, t.id_peserta, t.id_jadwal, t.approve, t.reg_no, t.lokasi, t.tools, t.status_pay FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta GROUP BY p.peserta_instansi_nama ORDER BY p.peserta_id ASC");
+$queryInd = mysqli_query($koneksi, "SELECT p.peserta_nama, p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
+$queryIns = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, p.peserta_instansi_nama, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
+$queryIndEdit = mysqli_query($koneksi, "SELECT p.peserta_nama, p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
+$queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, p.peserta_instansi_nama, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
 
 $drDown2 = mysqli_query($koneksi,"select * from m_jadwal");
 $jadwal_dropdown = '';
@@ -13,6 +16,7 @@ if (mysqli_num_rows($drDown2) > 0) {
   while ($rowJadwal = mysqli_fetch_assoc($drDown2)) {
     // code...
     $jadwal_dropdown .= '<option value="'.$rowJadwal['jadwal_id'].'">'.$rowJadwal['jadwal_sesi'].' : '.$rowJadwal['jadwal_mulai'].' - '.$rowJadwal['jadwal_selesai'].'</option>';
+    
   }
 }
 ?>
@@ -50,14 +54,15 @@ if (mysqli_num_rows($drDown2) > 0) {
           $jadwal = $data["id_jadwal"];
           $approve = $data["approve"];
           $regno = $data["reg_no"];
+          $lokasi = $data["lokasi"];
         ?>
 
         <tr>
 
-          <td><?php echo $no; ?></td>
-          <td><?php echo $jenis; ?></td>
-          <td><?php echo $instansi; ?></td>
-          <td>
+          <td class="align-middle"><?php echo $regno; ?></td>
+          <td class="align-middle"><?php echo $jenis; ?></td>
+          <td class="align-middle"><?php echo $instansi; ?></td>
+          <td class="align-middle">
             <select class="form-control apr-disabled<?php echo $no;?>" id="jadwal<?php echo $regno; ?>">
               <option value="">Pilih Jadwal</option>
               <?php
@@ -65,32 +70,32 @@ if (mysqli_num_rows($drDown2) > 0) {
               ?>
             </select>
           </td>
-          <td>
-            <input type="text" class="form-control apr-disabled<?php echo $no;?>" id="lokasi<?php echo $regno; ?>" placeholder="Masukkan Lokasi">
+          <td class="align-middle">
+            <input type="text" class="form-control apr-disabled<?php echo $no;?>" id="lokasi<?php echo $regno; ?>" value="<?php if ($data["lokasi"] == "") { echo ""; } else { echo $lokasi; } ?>" placeholder="Masukkan Lokasi">
             <input type="hidden" id="noregis<?php echo $regno; ?>" value="<?php echo $regno; ?>">
           </td>
-          <td>
+          <td class="align-middle">
             <select class="form-control apr-disabled<?php echo $no;?>" id="tools<?php echo $regno; ?>">
-              <option value="">Pilih Tools</option>
-              <option value="softcopy">Softcopy</option>
-              <option value="hardcopy">Hardcopy</option>
+              <option value="" <?php if ($data["tools"] == "") { echo "selected"; } ?> >Pilih Tools</option>
+              <option value="softcopy" <?php if ($data["tools"] == "softcopy") { echo "selected"; } ?> >Softcopy</option>
+              <option value="hardcopy" <?php if ($data["tools"] == "hardcopy") { echo "selected"; } ?> >Hardcopy</option>
             </select>
           </td>
-          <td>
+          <td class="align-middle">
             <div class="btn-group btn-group-sm">
-              <button type="button" class="btn btn-warning" data-target="#view<?php echo $jenis;?><?php echo $no;?>" data-toggle="modal"><i class="fa fa-eye"></i> View</button>
+              <button type="button" class="btn btn-warning" data-target="#view<?php echo $jenis;?><?php echo $regno;?>" data-toggle="modal"><i class="fa fa-eye"></i> View</button>
               <button type="button" class="btn btn-danger apr-disabled<?php echo $no;?>" data-target="#edit<?php echo $jenis;?><?php echo $no;?>" data-toggle="modal"><i class="fa fa-pen"></i> Edit</button>
             </div>
           </td>
-          <td>
+          <td class="align-middle">
             <select id="pembayaran<?php echo $regno; ?>" class="form-control pterm apr-disabled<?php echo $no;?>" data-showbtn="btnCk<?php echo $no; ?>">
-              <option selected>Pilih Pembayaran</option>
-              <option value="cod">COD</option>
-              <option value="kontrak">Kontrak</option>
-              <option value="H - 1">H - 1</option>
+              <option value="" <?php if ($data["status_pay"] == "") { echo "selected"; } ?> >Pilih Pembayaran</option>
+              <option value="cod" <?php if ($data["status_pay"] == "cod") { echo "selected"; } ?> >COD</option>
+              <option value="kontrak" <?php if ($data["status_pay"] == "kontrak") { echo "selected"; } ?> >Kontrak</option>
+              <option value="H - 1" <?php if ($data["status_pay"] == "H - 1") { echo "selected"; } ?> >H - 1</option>
             </select>
           </td>
-          <td>
+          <td class="align-middle">
             <span class="button-checkbox" id="btnCk<?php echo $no; ?>" data-id="<?php echo $no; ?>" data-apr="<?php echo $approve;?>" data-field="<?php echo $regno; ?>" style="display:none">
               <button type="button" class="btn btn-sm" data-color="success">  Setujui</button>
               <input type="checkbox" style="display: none;" />

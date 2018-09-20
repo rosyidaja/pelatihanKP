@@ -3,7 +3,7 @@ include '../../config/koneksi.php';
 
 $mID = $_SESSION['m-id'];
 
-$query = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_instansi_nama, j.jadwal_sesi, t.id_peserta, t.id_jadwal, t.approve, t.reg_no, t.lokasi, t.tools, t.status_pay FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta GROUP BY p.peserta_instansi_nama ORDER BY p.peserta_id ASC");
+$query = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_instansi_nama, j.jadwal_sesi, u.user_nama, t.id_peserta, t.id_jadwal, t.approve, t.reg_no, t.lokasi, t.tools, t.status_pay FROM m_peserta P INNER JOIN(m_jadwal j INNER JOIN(t_sertifikasi t INNER JOIN m_user u ON t.id_marketing=u.user_id) ON j.jadwal_id=t.id_jadwal) ON p.peserta_id=t.id_peserta WHERE t.approve='1' GROUP BY p.peserta_instansi_nama ORDER BY p.peserta_id ASC");
 $queryInd = mysqli_query($koneksi, "SELECT p.peserta_nama, p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
 $queryIns = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, p.peserta_instansi_nama, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
 $queryIndEdit = mysqli_query($koneksi, "SELECT p.peserta_nama, p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
@@ -16,7 +16,7 @@ if (mysqli_num_rows($drDown2) > 0) {
   while ($rowJadwal = mysqli_fetch_assoc($drDown2)) {
     // code...
     $jadwal_dropdown .= '<option value="'.$rowJadwal['jadwal_id'].'">'.$rowJadwal['jadwal_sesi'].' : '.$rowJadwal['jadwal_mulai'].' - '.$rowJadwal['jadwal_selesai'].'</option>';
-    
+
   }
 }
 ?>
@@ -39,6 +39,7 @@ if (mysqli_num_rows($drDown2) > 0) {
           <th>Tools</th>
           <th><i class="fa fa-cog"></i></th>
           <th>Payment Term</th>
+          <th>Status</th>
           <th>Konfirmasi</th>
         </tr>
       </thead>
@@ -55,6 +56,7 @@ if (mysqli_num_rows($drDown2) > 0) {
           $approve = $data["approve"];
           $regno = $data["reg_no"];
           $lokasi = $data["lokasi"];
+          $namaMar = $data["user_nama"];
         ?>
 
         <tr>
@@ -95,8 +97,9 @@ if (mysqli_num_rows($drDown2) > 0) {
               <option value="H - 1" <?php if ($data["status_pay"] == "H - 1") { echo "selected"; } ?> >H - 1</option>
             </select>
           </td>
+          <td>Approved<br>by <?php echo $namaMar; ?></td>
           <td class="align-middle">
-            <span class="button-checkbox" id="btnCk<?php echo $no; ?>" data-id="<?php echo $no; ?>" data-apr="<?php echo $approve;?>" data-field="<?php echo $regno; ?>" style="display:none">
+            <span class="button-checkbox" id="btnCk<?php echo $no; ?>" data-id="<?php echo $no; ?>" data-mid="<?php echo $mID; ?>" data-apr="<?php echo $approve;?>" data-field="<?php echo $regno; ?>" style="display:none">
               <button type="button" class="btn btn-sm" data-color="success">  Setujui</button>
               <input type="checkbox" style="display: none;" />
             </span>
@@ -111,6 +114,7 @@ if (mysqli_num_rows($drDown2) > 0) {
     </table>
   <?php } ?>
 </div>
+
 
 <?php include('modal/regis-view-instansi.php'); ?>
 

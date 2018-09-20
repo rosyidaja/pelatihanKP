@@ -104,6 +104,7 @@ $(function () {
             $button = $widget.find('button'),
             $checkbox = $widget.find('input:checkbox'),
             $dataApr = $widget.attr('data-apr'),
+            $dataMID = $widget.attr('data-mid'),
             $dataField = $widget.attr('data-field'),
             $dataId = $widget.attr('data-id'),
             $disabledEdit = $('.apr-disabled'+$dataId),
@@ -118,7 +119,20 @@ $(function () {
             };
 
         //hide if approved
-        if ($dataApr > "0") {
+        // if ($dataApr > "0" && $dataMID == "1") {
+        //
+        // } else {
+        //   $checkbox.prop('checked', !$checkbox.is(':checked'));
+        //   $checkbox.triggerHandler('change');
+        //   updateDisplay();
+        //   $disabledEdit.prop('disabled', true);
+        //   $button.prop('disabled', true);
+        //   $widget.show();
+        // }
+
+        if ($dataMID == "1") {
+          $widget.show();
+        } else if ($dataMID != "1" && $dataApr > "0") {
           $checkbox.prop('checked', !$checkbox.is(':checked'));
           $checkbox.triggerHandler('change');
           updateDisplay();

@@ -301,6 +301,15 @@ $noregBaru = mysqli_fetch_assoc($sql_noregis);
 
               <div class="form-row">
                 <div class="col-sm-3 form-group">
+                  <label class="control-label">Nama PIC</label>
+                </div>
+                <div class="col-sm-8 form-group">
+                  <input type="text" id="nama_pic" class="form-control" name="" value="" placeholder="Nama pic" >
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-sm-3 form-group">
                   <label class="control-label">Email PIC</label>
                 </div>
                 <div class="col-sm-8 form-group">
@@ -322,7 +331,7 @@ $noregBaru = mysqli_fetch_assoc($sql_noregis);
                   <label class="control-label">Nomor Telepon PIC</label>
                 </div>
                 <div class="col-sm-8 form-group">
-                  <input type="text" id="nomer_instansi"class="form-control" name="" value="" placeholder="Nomor Telepon Instansi" >
+                  <input type="text" id="nomer_instansi"class="form-control" name="" value="" placeholder="Nomor Telepon PIC" >
                 </div>
               </div>
 

@@ -45,6 +45,7 @@ $(function () {
           var info = {};
           info.nama_marketing = $("[id*=nama_marketing]").val();
           info.nama_instansi = $("[id*=nama_instansi]").val();
+          info.nama_pic = $("[id*=nama_pic]").val();
           info.email_instansi = $("[id*=email_instansi]").val();
           info.alamat_instansi = $("[id*=alamat_instansi]").val();
           info.nomer_instansi = $("[id*=nomer_instansi]").val();

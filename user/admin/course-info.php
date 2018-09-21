@@ -42,6 +42,7 @@ $queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat
           // code...
           $jadwal_dropdown = '';
           $id = $data["id_peserta"];
+          $jenis = $data["peserta_jenis"];
           $instansi = $data["peserta_instansi_nama"];
           $jadwal = $data["id_jadwal"];
           $approve = $data["approve"];

@@ -41,7 +41,7 @@ while ($row = mysqli_fetch_array($datajadwal)) {
 <!-- Modal Edit User Start -->
 
 <div class="modal fade" id="edit<?php echo $id;?>">
-  <form class="form-horizontal" method="post" action="../../fungsi/manage_user.php">
+  <form class="form-horizontal" method="post" action="../../fungsi/jadwal_manage.php">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
         <!-- modal header start -->
@@ -81,7 +81,7 @@ while ($row = mysqli_fetch_array($datajadwal)) {
         <!-- modal body end -->
         <!-- modal footer start -->
         <div class="modal-footer">
-          <button type="submit" class="btn btn-primary" name="update-user">Submit</button>
+          <button type="submit" class="btn btn-primary" name="update-jadwal">Submit</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
         </div>
         <!-- modal footer end -->
@@ -95,7 +95,7 @@ while ($row = mysqli_fetch_array($datajadwal)) {
 <!-- Modal Delete User Start -->
 
 <div class="modal fade" id="delete<?php echo $id;?>">
-  <form action="../../fungsi/manage_jadwal.php" method="post">
+  <form action="../../fungsi/jadwal_manage.php" method="post">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
@@ -121,10 +121,10 @@ while ($row = mysqli_fetch_array($datajadwal)) {
 echo "</tbody>";
 ?>
 
-<!-- Modal Add User Start -->
+<!-- Modal Add Jadwal Start -->
 
 <div class="modal fade" id="addjadwal">
-  <form class="form-horizontal" method="post" action="../../fungsi/manage_jadwal.php">
+  <form class="form-horizontal" method="post" action="../../fungsi/jadwal_manage.php">
     <div class="modal-dialog modal-md">
       <div class="modal-content">
         <!-- modal header start -->

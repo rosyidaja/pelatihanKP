@@ -94,7 +94,7 @@ if (mysqli_num_rows($drDown2) > 0) {
             </select>
           </td>
           <td class="align-middle">
-            <span class="button-checkbox" id="btnCk<?php echo $no; ?>" data-id="<?php echo $no; ?>" data-apr="<?php echo $approve;?>" data-mid="<?php echo $mID; ?>" data-field="<?php echo $regno; ?>" style="display:none">
+            <span class="button-checkbox-marketing" id="btnCk<?php echo $no; ?>" data-id="<?php echo $no; ?>" data-apr="<?php echo $approve;?>" data-mid="<?php echo $mID; ?>" data-field="<?php echo $regno; ?>" style="display:none">
               <button type="button" class="btn btn-sm" data-color="success">  Setujui</button>
               <input type="checkbox" style="display: none;" />
             </span>

@@ -95,7 +95,8 @@ $(function () {
       return false;
   });
 
-    $('.button-checkbox').each(function () {
+    // tombol setujui marketing
+    $('.button-checkbox-marketing').each(function () {
         // var $dataId = $(this).attr('data-id');
         // var $disabledEdit = $('.apr-disabled');
         // Settings
@@ -220,6 +221,142 @@ $(function () {
         }
         init();
     });
+
+    //tombol setujui admin
+    $('.button-checkbox-admin').each(function () {
+        // var $dataId = $(this).attr('data-id');
+        // var $disabledEdit = $('.apr-disabled');
+        // Settings
+
+        var $widget = $(this),
+            $button = $widget.find('button'),
+            $checkbox = $widget.find('input:checkbox'),
+            $dataApr = $widget.attr('data-apr'),
+            $dataMID = $widget.attr('data-mid'),
+            $dataField = $widget.attr('data-field'),
+            $dataId = $widget.attr('data-id'),
+            $disabledEdit = $('.apr-disabled'+$dataId),
+            color = $button.data('color'),
+            settings = {
+                on: {
+                    icon: 'fa fa-check-square'
+                },
+                off: {
+                    icon: 'far fa-square'
+                }
+            };
+
+        //hide if approved
+        // if ($dataApr > "0" && $dataMID == "1") {
+        //
+        // } else {
+        //   $checkbox.prop('checked', !$checkbox.is(':checked'));
+        //   $checkbox.triggerHandler('change');
+        //   updateDisplay();
+        //   $disabledEdit.prop('disabled', true);
+        //   $button.prop('disabled', true);
+        //   $widget.show();
+        // }
+
+        // if ($dataMID == "1") {
+        //   $widget.show();
+        // } else if ($dataMID != "1" && $dataApr > "0") {
+        //   $checkbox.prop('checked', !$checkbox.is(':checked'));
+        //   $checkbox.triggerHandler('change');
+        //   updateDisplay();
+        //   $disabledEdit.prop('disabled', true);
+        //   $button.prop('disabled', true);
+        //   $widget.show();
+        // }
+
+        if ($dataApr == "2") {
+          $checkbox.prop('checked', !$checkbox.is(':checked'));
+          $checkbox.triggerHandler('change');
+          updateDisplay();
+          $widget.show();
+        } else {
+          $widget.show();
+        }
+        // $widget.show();
+
+        // Event Handlers
+        $button.on('click', function () {
+            if (confirm("Apakah anda yakin akan menyetujui data ini ?\nData akan ditampilkan di dashboard umum setelah di setujui.")) {
+
+              $widget.attr("data-apr", "2");
+
+              var approveM = {};
+              approveM.id = $("[id*=noregis"+$dataField+"]").val();
+              approveM.jadwal = $("[id*=jadwal"+$dataField+"]").val();
+              approveM.lokasi = $("[id*=lokasi"+$dataField+"]").val();
+              approveM.tools = $("[id*=tools"+$dataField+"]").val();
+              approveM.pembayaran = $("[id*=pembayaran"+$dataField+"]").val();
+              approveM.approval = $widget.attr('data-apr');
+
+              $.ajax({
+                type: 'POST',
+                data: {
+                  marketingApr : approveM
+                  },
+                url: '../../fungsi/marketing_datreg.php',
+                success: function(result) {
+                  if (result != 1) {
+                    alert("Data gagal dihapus, Silahkan coba kembali");
+                  } else {
+
+                  }
+                }
+              });
+
+              $checkbox.prop('checked', !$checkbox.is(':checked'));
+              $checkbox.triggerHandler('change');
+              updateDisplay();
+            } else {
+              return false;
+            }
+        });
+        $checkbox.on('change', function () {
+            updateDisplay();
+        });
+
+        // Actions
+        function updateDisplay() {
+            var isChecked = $checkbox.is(':checked');
+
+            // Set the button's state
+            $button.data('state', (isChecked) ? "on" : "off");
+
+            // Set the button's icon
+            $button.find('.state-icon')
+                .removeClass()
+                .addClass('state-icon ' + settings[$button.data('state')].icon);
+
+            // Update the button's color
+            if (isChecked) {
+                $button
+                    .removeClass('btn-default')
+                    .addClass('btn-' + color + ' active');
+            }
+            else {
+                $button
+                    .removeClass('btn-' + color + ' active')
+                    .addClass('btn-default');
+            }
+        }
+
+        // Initialization
+        function init() {
+
+            updateDisplay();
+
+            // Inject the icon if applicable
+            if ($button.find('.state-icon').length == 0) {
+                $button.prepend('<i class="state-icon ' + settings[$button.data('state')].icon + '"></i>');
+            }
+        }
+        init();
+    });
+
 });
 
 // dropdown function

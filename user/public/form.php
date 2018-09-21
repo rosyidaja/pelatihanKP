@@ -168,8 +168,9 @@ $noregBaru = mysqli_fetch_assoc($sql_noregis);
                 </div>
                 <div class="col-sm-3 form-group">
                   <select class="form-control" name="course" onchange="getval(this);" id="jns_pelatihan">
+                    <option value="0">Pilih Jenis Pelatihan</option>
                     <?php
-                   echo $value_drowdown;
+                    echo $value_drowdown;
                     ?>
                   </select>
                 </div>
@@ -178,6 +179,7 @@ $noregBaru = mysqli_fetch_assoc($sql_noregis);
                 </div>
                 <div class="col-sm-2 form-group">
                   <select class="form-control" name="schedule">
+                    <option value="0">Pilih Jadwal</option>
                     <?php
                       echo $jadwal_dropdown;
                     ?>
@@ -340,6 +342,8 @@ $noregBaru = mysqli_fetch_assoc($sql_noregis);
                   </select>
                 </div>
               </div>
+
+
 
               <div class="form-row">
                 <div class="col-sm-3 form-group">

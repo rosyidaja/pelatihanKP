@@ -1,7 +1,8 @@
 // Coba jQuery
 $(function() {
     $('body').fadeIn("slow");
-    $('.alert-success').delay("2000").fadeOut("slow");
+    $('.alert-dismissible').delay("2000").slideUp("slow");
+    $('#lblinfo').html("Kode Pelatihan : Pilih Pelatihan");
 });
 
 $(document).ready(function(){
@@ -269,7 +270,7 @@ $(function () {
                     $checkbox.prop('checked', !$checkbox.is(':checked'));
                     $checkbox.triggerHandler('change');
                     updateDisplay();
-                    window.location.href = "../../user/admin/index.php?halaman=course-info&pesan=sukses";
+                    window.location.href = "../../user/admin/index.php?halaman=course-info&pesan=sukses-apr";
                   }
                 }
               });
@@ -303,7 +304,7 @@ $(function () {
                     $checkbox.prop('checked', !$checkbox.is(':checked'));
                     $checkbox.triggerHandler('change');
                     updateDisplay();
-                    window.location.href = "../../user/admin/index.php?halaman=course-info&pesan=sukses";
+                    window.location.href = "../../user/admin/index.php?halaman=course-info&pesan=sukses-noapr";
                   }
                 }
               });

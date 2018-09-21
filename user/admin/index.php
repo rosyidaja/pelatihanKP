@@ -49,16 +49,6 @@ session_start();
 if ($_SESSION['status']!="admin") {
 	header("location:../../login.php?pesan=belum_login");
 }
-
-if(isset($_GET['pesan'])){
-      if($_GET['pesan'] == "sukses"){
-        echo '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" name="button">&times</button><strong>Aksi Berhasil!</strong></div>';
-    } else {
-    	// code...
-			echo '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" name="button">&times</button><strong>Aksi Gagal!</strong></div>';
-    }
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -99,7 +89,18 @@ if(isset($_GET['pesan'])){
 
 		<div class="main col-sm-10">
 
-			<?php include($halaman); ?>
+			<?php
+			if(isset($_GET['pesan'])){
+			      if($_GET['pesan'] == "sukses"){
+			        echo '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" name="button">&times</button><strong>Aksi Berhasil!</strong></div>';
+			    } else {
+			    	// code...
+						echo '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" name="button">&times</button><strong>Aksi Gagal!</strong></div>';
+			    }
+			}
+			
+			include($halaman);
+			?>
 
 		</div>
 

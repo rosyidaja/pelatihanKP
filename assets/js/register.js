@@ -1,6 +1,7 @@
 // Coba jQuery
 $(function() {
     $('body').fadeIn("slow");
+    $('.alert-success').delay("2000").fadeOut("slow");
 });
 
 $(document).ready(function(){
@@ -97,9 +98,6 @@ $(function () {
 
     // tombol setujui marketing
     $('.button-checkbox-marketing').each(function () {
-        // var $dataId = $(this).attr('data-id');
-        // var $disabledEdit = $('.apr-disabled');
-        // Settings
 
         var $widget = $(this),
             $button = $widget.find('button'),
@@ -120,16 +118,6 @@ $(function () {
             };
 
         //hide if approved
-        // if ($dataApr > "0" && $dataMID == "1") {
-        //
-        // } else {
-        //   $checkbox.prop('checked', !$checkbox.is(':checked'));
-        //   $checkbox.triggerHandler('change');
-        //   updateDisplay();
-        //   $disabledEdit.prop('disabled', true);
-        //   $button.prop('disabled', true);
-        //   $widget.show();
-        // }
 
         if ($dataMID == "1") {
           $widget.show();
@@ -224,9 +212,6 @@ $(function () {
 
     //tombol setujui admin
     $('.button-checkbox-admin').each(function () {
-        // var $dataId = $(this).attr('data-id');
-        // var $disabledEdit = $('.apr-disabled');
-        // Settings
 
         var $widget = $(this),
             $button = $widget.find('button'),
@@ -246,29 +231,6 @@ $(function () {
                 }
             };
 
-        //hide if approved
-        // if ($dataApr > "0" && $dataMID == "1") {
-        //
-        // } else {
-        //   $checkbox.prop('checked', !$checkbox.is(':checked'));
-        //   $checkbox.triggerHandler('change');
-        //   updateDisplay();
-        //   $disabledEdit.prop('disabled', true);
-        //   $button.prop('disabled', true);
-        //   $widget.show();
-        // }
-
-        // if ($dataMID == "1") {
-        //   $widget.show();
-        // } else if ($dataMID != "1" && $dataApr > "0") {
-        //   $checkbox.prop('checked', !$checkbox.is(':checked'));
-        //   $checkbox.triggerHandler('change');
-        //   updateDisplay();
-        //   $disabledEdit.prop('disabled', true);
-        //   $button.prop('disabled', true);
-        //   $widget.show();
-        // }
-
         if ($dataApr == "2") {
           $checkbox.prop('checked', !$checkbox.is(':checked'));
           $checkbox.triggerHandler('change');
@@ -277,10 +239,10 @@ $(function () {
         } else {
           $widget.show();
         }
-        // $widget.show();
 
         // Event Handlers
         $button.on('click', function () {
+          if ($dataApr == "1") {
             if (confirm("Apakah anda yakin akan menyetujui data ini ?\nData akan ditampilkan di dashboard umum setelah di setujui.")) {
 
               $widget.attr("data-apr", "2");
@@ -304,17 +266,51 @@ $(function () {
                   if (result != 1) {
                     alert("Data gagal dihapus, Silahkan coba kembali");
                   } else {
-
+                    $checkbox.prop('checked', !$checkbox.is(':checked'));
+                    $checkbox.triggerHandler('change');
+                    updateDisplay();
+                    window.location.href = "../../user/admin/index.php?halaman=course-info&pesan=sukses";
                   }
                 }
               });
-
-              $checkbox.prop('checked', !$checkbox.is(':checked'));
-              $checkbox.triggerHandler('change');
-              updateDisplay();
             } else {
               return false;
             }
+          } else {
+            if (confirm("Apakah anda yakin akan membatalkan data ini ?\nData tidak akan di tampilkan di dashboard umum setelah di batalkan.")) {
+
+              $widget.attr("data-apr", "1");
+
+              var approveA = {};
+              approveA.id = $("[id*=noregis"+$dataField+"]").val();
+              approveA.jadwal = $("[id*=jadwal"+$dataField+"]").val();
+              approveA.lokasi = $("[id*=lokasi"+$dataField+"]").val();
+              approveA.trainer = $("[id*=trainer"+$dataField+"]").val();
+              approveA.tools = $("[id*=tools"+$dataField+"]").val();
+              approveA.pembayaran = $("[id*=pembayaran"+$dataField+"]").val();
+              approveA.approval = $widget.attr('data-apr');
+
+              $.ajax({
+                type: 'POST',
+                data: {
+                  marketingApr : approveA
+                  },
+                url: '../../fungsi/approval.php',
+                success: function(result) {
+                  if (result != 1) {
+                    alert("Data gagal dihapus, Silahkan coba kembali");
+                  } else {
+                    $checkbox.prop('checked', !$checkbox.is(':checked'));
+                    $checkbox.triggerHandler('change');
+                    updateDisplay();
+                    window.location.href = "../../user/admin/index.php?halaman=course-info&pesan=sukses";
+                  }
+                }
+              });
+            } else {
+              return false;
+            }
+          }
         });
         $checkbox.on('change', function () {
             updateDisplay();

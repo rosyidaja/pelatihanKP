@@ -3,7 +3,7 @@ include '../../config/koneksi.php';
 
 $mID = $_SESSION['m-id'];
 
-$query = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_instansi_nama, j.jadwal_sesi, u.user_nama, t.id_peserta, t.id_jadwal, t.approve, t.reg_no, t.lokasi, t.tools, t.status_pay FROM m_peserta P INNER JOIN(m_jadwal j INNER JOIN(t_sertifikasi t INNER JOIN m_user u ON t.id_marketing=u.user_id) ON j.jadwal_id=t.id_jadwal) ON p.peserta_id=t.id_peserta WHERE t.approve>'0' GROUP BY p.peserta_instansi_nama ORDER BY p.peserta_id ASC");
+$query = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_instansi_nama, j.jadwal_sesi, u.user_nama, t.id_peserta, t.id_jadwal, t.approve, t.reg_no, t.lokasi, t.tools, t.status_pay, t.trainer FROM m_peserta P INNER JOIN(m_jadwal j INNER JOIN(t_sertifikasi t INNER JOIN m_user u ON t.id_marketing=u.user_id) ON j.jadwal_id=t.id_jadwal) ON p.peserta_id=t.id_peserta WHERE t.approve>'0' GROUP BY p.peserta_instansi_nama ORDER BY p.peserta_id ASC");
 $queryInd = mysqli_query($koneksi, "SELECT p.peserta_nama, p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
 $queryIns = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, p.peserta_instansi_nama, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
 $queryIndEdit = mysqli_query($koneksi, "SELECT p.peserta_nama, p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta ORDER BY p.peserta_id ASC");
@@ -23,11 +23,11 @@ $queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat
       <thead>
         <tr>
           <th>NO. Regis</th>
-          <th>Jenis</th>
           <th>Peserta</th>
           <th>Jadwal</th>
           <th>Lokasi</th>
           <th>Tools</th>
+          <th>Trainer</th>
           <th><i class="fa fa-cog"></i></th>
           <th>Payment Term</th>
           <th>Status</th>
@@ -42,12 +42,12 @@ $queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat
           // code...
           $jadwal_dropdown = '';
           $id = $data["id_peserta"];
-          $jenis = $data["peserta_jenis"];
           $instansi = $data["peserta_instansi_nama"];
           $jadwal = $data["id_jadwal"];
           $approve = $data["approve"];
           $regno = $data["reg_no"];
           $lokasi = $data["lokasi"];
+          $trainer = $data["trainer"];
           $namaMar = $data["user_nama"];
 
         ?>
@@ -55,7 +55,6 @@ $queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat
         <tr>
 
           <td class="align-middle"><?php echo $regno; ?></td>
-          <td class="align-middle"><?php echo $jenis; ?></td>
           <td class="align-middle"><?php echo $instansi; ?></td>
           <td class="align-middle">
             <select class="form-control apr-disabled<?php echo $no;?>" id="jadwal<?php echo $regno; ?>">
@@ -87,6 +86,10 @@ $queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat
               <option value="softcopy" <?php if ($data["tools"] == "softcopy") { echo "selected"; } ?> >Softcopy</option>
               <option value="hardcopy" <?php if ($data["tools"] == "hardcopy") { echo "selected"; } ?> >Hardcopy</option>
             </select>
+          </td>
+          <td class="align-middle">
+            <input type="text" class="form-control apr-disabled<?php echo $no;?>" id="trainer<?php echo $regno; ?>" value="<?php if ($data["trainer"] == "") { echo ""; } else { echo $trainer; } ?>" placeholder="Masukkan Nama Trainer">
+            <input type="hidden" id="noregis<?php echo $regno; ?>" value="<?php echo $regno; ?>">
           </td>
           <td class="align-middle">
             <div class="btn-group btn-group-sm">

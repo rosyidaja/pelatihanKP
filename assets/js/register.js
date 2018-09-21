@@ -161,7 +161,7 @@ $(function () {
                 data: {
                   marketingApr : approveM
                   },
-                url: '../../fungsi/marketing_datreg.php',
+                url: '../../fungsi/approval.php',
                 success: function(result) {
                   if (result != 1) {
                     alert("Data gagal dihapus, Silahkan coba kembali");
@@ -285,20 +285,21 @@ $(function () {
 
               $widget.attr("data-apr", "2");
 
-              var approveM = {};
-              approveM.id = $("[id*=noregis"+$dataField+"]").val();
-              approveM.jadwal = $("[id*=jadwal"+$dataField+"]").val();
-              approveM.lokasi = $("[id*=lokasi"+$dataField+"]").val();
-              approveM.tools = $("[id*=tools"+$dataField+"]").val();
-              approveM.pembayaran = $("[id*=pembayaran"+$dataField+"]").val();
-              approveM.approval = $widget.attr('data-apr');
+              var approveA = {};
+              approveA.id = $("[id*=noregis"+$dataField+"]").val();
+              approveA.jadwal = $("[id*=jadwal"+$dataField+"]").val();
+              approveA.lokasi = $("[id*=lokasi"+$dataField+"]").val();
+              approveA.trainer = $("[id*=trainer"+$dataField+"]").val();
+              approveA.tools = $("[id*=tools"+$dataField+"]").val();
+              approveA.pembayaran = $("[id*=pembayaran"+$dataField+"]").val();
+              approveA.approval = $widget.attr('data-apr');
 
               $.ajax({
                 type: 'POST',
                 data: {
-                  marketingApr : approveM
+                  marketingApr : approveA
                   },
-                url: '../../fungsi/marketing_datreg.php',
+                url: '../../fungsi/approval.php',
                 success: function(result) {
                   if (result != 1) {
                     alert("Data gagal dihapus, Silahkan coba kembali");

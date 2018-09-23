@@ -27,7 +27,7 @@
         <!-- modal header end -->
         <!-- modal body start -->
         <div class="modal-body">
-          <input type="hidden" name="view_instansi_id" value="<?php echo $id2;?>">
+          <input type="hidden" name="view_instansi_id" value="<?php echo $id;?>">
           <div class="form-row">
             <div class="col-sm-3">
               <label class="control-label">Nama Peserta</label>

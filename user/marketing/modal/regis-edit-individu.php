@@ -17,7 +17,7 @@
   <!-- Modal edit individu Start -->
 
   <div class="modal fade" id="editindividu<?php echo $noregis;?>">
-    <form class="" data-noreg="<?php echo $noregis;?>" id="edit-<?php echo $jenis;?>-marketing" method="post">
+    <form data-noreg="<?php echo $noregis;?>" class="edit-individu-marketing" method="post">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <!-- modal header start -->

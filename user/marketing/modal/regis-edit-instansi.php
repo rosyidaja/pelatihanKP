@@ -5,6 +5,7 @@
   <?php while ($data = mysqli_fetch_array($queryInsEdit)) {
     // code...
     $noregis = $data["reg_no"];
+    $namaPIC = $data["peserta_pic_nama"];
     $id = $data["id_peserta"];
     $jenis = $data["peserta_jenis"];
     $instansi = $data["peserta_instansi_nama"];
@@ -30,9 +31,9 @@
           <input type="hidden" name="view_instansi_id" value="<?php echo $id;?>">
           <div class="form-row edit-form">
             <div class="col-sm-3">
-              <label class="control-label">Peserta</label>
+              <label class="control-label">Nama Instansi</label>
             </div>
-            <div class="col-sm1">
+            <div class="col-sm-1">
               <label> : </label>
             </div>
             <div class="col-sm-4">
@@ -42,9 +43,21 @@
 
           <div class="form-row edit-form">
             <div class="col-sm-3">
+              <label class="control-label">Nama PIC</label>
+            </div>
+            <div class="col-sm-1">
+              <label> : </label>
+            </div>
+            <div class="col-sm-4">
+              <input type="text" class="form-control" id="" value="<?php echo $namaPIC; ?>">
+            </div>
+          </div>
+
+          <div class="form-row edit-form">
+            <div class="col-sm-3">
               <label class="control-label">Telepon PIC</label>
             </div>
-            <div class="col-sm1">
+            <div class="col-sm-1">
               <label> : </label>
             </div>
             <div class="col-sm-4">
@@ -56,7 +69,7 @@
             <div class="col-sm-3">
               <label class="control-label">Email PIC</label>
             </div>
-            <div class="col-sm1">
+            <div class="col-sm-1">
               <label> : </label>
             </div>
             <div class="col-sm-4">
@@ -68,7 +81,7 @@
             <div class="col-sm-3">
               <label class="control-label">Alamat Instansi</label>
             </div>
-            <div class="col-sm1">
+            <div class="col-sm-1">
               <label> : </label>
             </div>
             <div class="col-sm-4">

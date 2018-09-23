@@ -50,9 +50,28 @@ $(function () {
   //submit modal edit individu
   $('#edit-individu-marketing').submit(function (e) {
     e.preventDefault();
+    var $dataNoreg = $(this).attr('data-noreg');
     if (confirm("Submit data ?")) {
       // alert("data berhasil di submit");
+      var editIndMarket = {};
+      editIndMarket.nama = $("[id*=nama-ind-"+$dataNoreg+"]").val();
+      editIndMarket.alamat = $("[id*=alamat-ind-"+$dataNoreg+"]").val();
+      editIndMarket.telp = $("[id*=telp-ind-"+$dataNoreg+"]").val();
+      editIndMarket.email = $("[id*=email-ind-"+$dataNoreg+"]").val();
 
+      $.ajax({
+        type: 'POST',
+        data: { editMarket : editIndMarket },
+        url: '../../fungsi/edit-data-regis.php',
+        success: function(result) {
+          if (result != 1) {
+            alert("Data gagal di submit");
+          } else {
+
+          }
+        }
+      });
+      
     } else {
       return false;
     }

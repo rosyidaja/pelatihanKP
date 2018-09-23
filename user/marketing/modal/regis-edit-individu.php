@@ -17,7 +17,7 @@
   <!-- Modal edit individu Start -->
 
   <div class="modal fade" id="editindividu<?php echo $noregis;?>">
-    <form class="" id="edit-<?php echo $jenis;?>-marketing" method="post">
+    <form class="" data-noreg="<?php echo $noregis;?>" id="edit-<?php echo $jenis;?>-marketing" method="post">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <!-- modal header start -->
@@ -33,11 +33,11 @@
               <div class="col-sm-3">
                 <label class="control-label">Nama Peserta</label>
               </div>
-              <div class="col-sm1">
+              <div class="col-sm-1">
                 <label> : </label>
               </div>
               <div class="col-sm-4">
-                <input type="text" class="form-control" name="" value="<?php echo $nama; ?>">
+                <input type="text" id="nama-ind-<?php echo $noregis;?>" class="form-control" name="" value="<?php echo $nama; ?>">
               </div>
             </div>
 
@@ -45,11 +45,11 @@
               <div class="col-sm-3">
                 <label class="control-label">Nomor Telepon</label>
               </div>
-              <div class="col-sm1">
+              <div class="col-sm-1">
                 <label> : </label>
               </div>
               <div class="col-sm-4">
-                <input type="text" class="form-control" name="" value="<?php echo $telp; ?>">
+                <input type="text" class="form-control" id="telp-ind-<?php echo $noregis;?>" name="" value="<?php echo $telp; ?>">
               </div>
             </div>
 
@@ -57,11 +57,11 @@
               <div class="col-sm-3">
                 <label class="control-label">Email</label>
               </div>
-              <div class="col-sm1">
+              <div class="col-sm-1">
                 <label> : </label>
               </div>
               <div class="col-sm-4">
-                <input type="text" class="form-control" name="" value="<?php echo $email; ?>">
+                <input type="text" class="form-control" id="email-ind-<?php echo $noregis;?>" name="" value="<?php echo $email; ?>">
               </div>
             </div>
 
@@ -69,11 +69,11 @@
               <div class="col-sm-3">
                 <label class="control-label">Alamat</label>
               </div>
-              <div class="col-sm1">
+              <div class="col-sm-1">
                 <label> : </label>
               </div>
               <div class="col-sm-4">
-                <input type="text" class="form-control" name="" value="<?php echo $alamat; ?>">
+                <input type="text" class="form-control" id="alamat-ind-<?php echo $noregis;?>" name="" value="<?php echo $alamat; ?>">
               </div>
             </div>
 

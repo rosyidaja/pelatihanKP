@@ -20,7 +20,7 @@
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <!-- modal header start -->
-        <div class="modal-header">
+        <div class="modal-header form-horizontal">
           <h4>Data Registrasi NO.<?php echo $noregis; ?></h4>
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
@@ -28,7 +28,7 @@
         <!-- modal body start -->
         <div class="modal-body">
           <input type="hidden" name="view_instansi_id" value="<?php echo $id;?>">
-          <div class="form-row">
+          <div class="form-row edit-form">
             <div class="col-sm-3">
               <label class="control-label">Peserta</label>
             </div>
@@ -40,7 +40,7 @@
             </div>
           </div>
 
-          <div class="form-row">
+          <div class="form-row edit-form">
             <div class="col-sm-3">
               <label class="control-label">Telepon PIC</label>
             </div>
@@ -52,7 +52,7 @@
             </div>
           </div>
 
-          <div class="form-row">
+          <div class="form-row edit-form">
             <div class="col-sm-3">
               <label class="control-label">Email PIC</label>
             </div>
@@ -64,7 +64,7 @@
             </div>
           </div>
 
-          <div class="form-row">
+          <div class="form-row edit-form">
             <div class="col-sm-3">
               <label class="control-label">Alamat Instansi</label>
             </div>
@@ -76,7 +76,9 @@
             </div>
           </div>
 
-          <div class="form-row">
+
+
+          <div class="form-row edit-form">
             <div class="col-sm-3">
               <br>
               <label class="control-label"> <h5>Daftar Peserta</h5> </label>
@@ -94,7 +96,7 @@
                 </tr>
               </thead>
               <tbody>
-                <?php $qmtable = mysqli_query($koneksi, "SELECT p.peserta_nama, t.id_peserta, t.id_jns_pelatihan, jp.jns_pelatihan_nama FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jns_pelatihan jp ON t.id_jns_pelatihan=jp.jns_pelatihan_kode) ON p.peserta_id=t.id_peserta WHERE p.peserta_instansi_nama='$instansi' ORDER BY jp.jns_pelatihan_kode ASC"); ?>
+                <?php $qmtable = mysqli_query($koneksi, "SELECT p.peserta_nama, t.id_peserta, t.id_jns_pelatihan, jp.jns_pelatihan_nama FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jns_pelatihan jp ON t.id_jns_pelatihan=jp.jns_pelatihan_kode) ON p.peserta_id=t.id_peserta WHERE p.peserta_instansi_nama='$instansi' ORDER BY t.id_peserta ASC"); ?>
                 <?php if (mysqli_num_rows($qmtable)>0) { ?>
 
                   <?php while ($data = mysqli_fetch_array($qmtable)) {
@@ -122,7 +124,8 @@
         <!-- modal body end -->
         <!-- modal footer start -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
+          <button type="submit" class="btn btn-primary" name="edit-<?php echo $jenis;?>">Submit</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
         </div>
         <!-- modal footer end -->
       </div>

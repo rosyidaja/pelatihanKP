@@ -56,17 +56,26 @@ $noregBaru = mysqli_fetch_assoc($sql_noregis);
         ?>
         var res = '<?php echo $value_drowdown; ?>';
         var res_jadwal = '<?php echo $jadwal_dropdown; ?>';
+
+        $('.pelatihan-dropdown').on('change', function() {
+          var $val = $(this).find('option:selected').val();
+          var $txt = $(this).find('option:selected').text();
+          $('.jns_pel').text($txt);
+          $('.kod_pel').text($val);
+        });
+
         // add tabel
         $("#tambah").on("click",function(){
+          var dropjnsVal = $('.pelatihan-dropdown option:selected').val();
+          var dropjnsTxt = $('.pelatihan-dropdown option:selected').text();
           var barisbaru = $("<tr>");
           var kolom = "";
           var counter = $("#tbpeserta tbody>tr").length + 1;
-          kolom += '<td><select class="form-control" id="pel' + counter + '">'+ res +'</select> </td>';
-          kolom += '<td>KODE_PEL</td>';
-          kolom += '<td><input type="text" class="form-control" id="nama' + counter + '" placeholder="Nama Peserta"></td>';
-          kolom += '<td><select class="form-control" id="jadwal' + counter + '">'+ res_jadwal +'</select></td>';
-          kolom += '<td><input type="text" class="form-control" id="cat' + counter + '" placeholder="Masukkan Catatan"></td>';
-          kolom += '<td><button type="button" class="hapus btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></td>';
+          kolom += '<td class="align-middle"><label class="jns_pel">'+ dropjnsTxt +'</label></td>';
+          kolom += '<td class="align-middle"><label class="kod_pel">'+ dropjnsVal +'</label></td>';
+          kolom += '<td class="align-middle"><input type="text" class="form-control" id="nama' + counter + '" placeholder="Nama Peserta"></td>';
+          kolom += '<td class="align-middle"><input type="text" class="form-control" id="cat' + counter + '" placeholder="Masukkan Catatan"></td>';
+          kolom += '<td class="align-middle"><button type="button" class="hapus btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></td>';
 
           barisbaru.append(kolom);
           $("#tbpeserta tbody").append(barisbaru);
@@ -177,7 +186,7 @@ $noregBaru = mysqli_fetch_assoc($sql_noregis);
                 <div class="col-sm-3 form-group text-center">
                   <label class="control-label alert alert-info" id="lblinfo" style="margin-bottom: 0px; padding-bottom: 6px;padding-top: 6px;">Kode Pelatihan: </label>
                 </div>
-                <div class="col-sm-2 form-group">
+                <div class="col-sm-3 form-group">
                   <select class="form-control" name="schedule">
                     <option value="0">Pilih Jadwal</option>
                     <?php
@@ -297,7 +306,7 @@ $noregBaru = mysqli_fetch_assoc($sql_noregis);
                   <label class="control-label">Nama Instansi</label>
                 </div>
                 <div class="col-sm-8 form-group">
-                  <input type="text" id="nama_instansi" class="form-control" name="" value="" placeholder="Nama instansi" >
+                  <input type="text" id="nama_instansi" class="form-control" name="" value="" placeholder="Nama instansi" required>
                 </div>
               </div>
 
@@ -306,7 +315,7 @@ $noregBaru = mysqli_fetch_assoc($sql_noregis);
                   <label class="control-label">Nama PIC</label>
                 </div>
                 <div class="col-sm-8 form-group">
-                  <input type="text" id="nama_pic" class="form-control" name="" value="" placeholder="Nama pic" >
+                  <input type="text" id="nama_pic" class="form-control" name="" value="" placeholder="Nama pic" required >
                 </div>
               </div>
 
@@ -334,6 +343,28 @@ $noregBaru = mysqli_fetch_assoc($sql_noregis);
                 </div>
                 <div class="col-sm-8 form-group">
                   <input type="text" id="nomer_instansi"class="form-control" name="" value="" placeholder="Nomor Telepon PIC" >
+                </div>
+              </div>
+
+              <div class="form-row">
+                <div class="col-sm-3 form-group">
+                  <label class="control-label">Jenis Pelatihan</label>
+                </div>
+                <div class="col-sm-3 form-group">
+                  <select class="form-control pelatihan-dropdown" id="jenis_pelatihan">
+                    <option value="Pilih Jenis Pelatihan">Pilih Jenis Pelatihan</option>
+                    <?php
+                    echo $value_drowdown;
+                    ?>
+                  </select>
+                </div>
+                <div class="col-sm-3 form-group">
+                  <select class="form-control" id="jadwal_instansi">
+                    <option value="0">Pilih Jadwal</option>
+                    <?php
+                      echo $jadwal_dropdown;
+                    ?>
+                  </select>
                 </div>
               </div>
 
@@ -372,7 +403,7 @@ $noregBaru = mysqli_fetch_assoc($sql_noregis);
                       <th>Jenis Pelatihan</th>
                       <th>Kode Pelatihan</th>
                       <th>Nama Peserta</th>
-                      <th>Jadwal Pelatihan</th>
+                      <!-- <th>Jadwal Pelatihan</th> -->
                       <th>Catatan</th>
                       <th><i class="fa fa-cog"></i></th>
                     </tr>

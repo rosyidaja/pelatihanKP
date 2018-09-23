@@ -3,6 +3,11 @@ body{
   display: none;
 }
 
+div.form-row.edit-form {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 .sidenav {
     height: 100%;
     width: 14%;

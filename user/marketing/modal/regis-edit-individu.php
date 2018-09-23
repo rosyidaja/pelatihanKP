@@ -14,10 +14,10 @@
     $telp = $data["peserta_telp"];
   ?>
 
-  <!-- Modal view individu Start -->
+  <!-- Modal edit individu Start -->
 
   <div class="modal fade" id="editindividu<?php echo $noregis;?>">
-    <form class="" action="../../fungsi/marketing_datreg.php" method="post">
+    <form class="" id="edit-<?php echo $jenis;?>-marketing" method="post">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <!-- modal header start -->
@@ -28,10 +28,10 @@
           <!-- modal header end -->
           <!-- modal body start -->
           <div class="modal-body">
-            <input type="hidden" name="view_instansi_id" value="<?php echo $id2;?>">
-            <div class="form-row">
+            <input type="hidden" name="view_instansi_id" value="<?php echo $id;?>">
+            <div class="form-row edit-form">
               <div class="col-sm-3">
-                <label class="control-label">Peserta</label>
+                <label class="control-label">Nama Peserta</label>
               </div>
               <div class="col-sm1">
                 <label> : </label>
@@ -41,9 +41,9 @@
               </div>
             </div>
 
-            <div class="form-row">
+            <div class="form-row edit-form">
               <div class="col-sm-3">
-                <label class="control-label">Telepon</label>
+                <label class="control-label">Nomor Telepon</label>
               </div>
               <div class="col-sm1">
                 <label> : </label>
@@ -53,7 +53,7 @@
               </div>
             </div>
 
-            <div class="form-row">
+            <div class="form-row edit-form">
               <div class="col-sm-3">
                 <label class="control-label">Email</label>
               </div>
@@ -65,7 +65,7 @@
               </div>
             </div>
 
-            <div class="form-row">
+            <div class="form-row edit-form">
               <div class="col-sm-3">
                 <label class="control-label">Alamat</label>
               </div>
@@ -81,7 +81,7 @@
           <!-- modal body end -->
           <!-- modal footer start -->
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" name="submit-edit">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
           </div>
           <!-- modal footer end -->

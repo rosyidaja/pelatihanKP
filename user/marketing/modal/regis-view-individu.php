@@ -30,7 +30,7 @@
           <input type="hidden" name="view_instansi_id" value="<?php echo $id2;?>">
           <div class="form-row">
             <div class="col-sm-3">
-              <label class="control-label">Peserta</label>
+              <label class="control-label">Nama Peserta</label>
             </div>
             <div class="col-sm1">
               <label> : </label>
@@ -42,7 +42,7 @@
 
           <div class="form-row">
             <div class="col-sm-3">
-              <label class="control-label">Telepon PIC</label>
+              <label class="control-label">Nomor Telepon</label>
             </div>
             <div class="col-sm1">
               <label> : </label>
@@ -54,7 +54,7 @@
 
           <div class="form-row">
             <div class="col-sm-3">
-              <label class="control-label">Email PIC</label>
+              <label class="control-label">Email</label>
             </div>
             <div class="col-sm1">
               <label> : </label>
@@ -66,7 +66,7 @@
 
           <div class="form-row">
             <div class="col-sm-3">
-              <label class="control-label">Alamat Instansi</label>
+              <label class="control-label">Alamat</label>
             </div>
             <div class="col-sm1">
               <label> : </label>

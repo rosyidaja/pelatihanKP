@@ -2,10 +2,18 @@
 $(function() {
     $('body').fadeIn("slow");
     $('.alert-dismissible').delay("2000").slideUp("slow");
-    $('#lblinfo').html("Kode Pelatihan : Pilih Pelatihan");
+    $('#lblinfo').html("Pilih Pelatihan");
 });
 
+// dropdown function
+function getval(sel)
+{
+    // alert(sel.value);
+    document.getElementById("lblinfo").innerHTML= "Kode Pelatihan: " + document.getElementById("jns_pelatihan").value;
+};
+
 $(document).ready(function(){
+
 
   //approval button
   $('.pterm').on('change', function() {
@@ -38,6 +46,18 @@ $(document).ready(function(){
 
 // checkbox
 $(function () {
+
+  //submit modal edit individu
+  $('#edit-individu-marketing').submit(function (e) {
+    e.preventDefault();
+    if (confirm("Submit data ?")) {
+      // alert("data berhasil di submit");
+
+    } else {
+      return false;
+    }
+  });
+
   //submit
   $('#btnFrmSubmit').click(function () {
       /* Checking if more than 0 rows exists */
@@ -46,6 +66,8 @@ $(function () {
           info.nama_marketing = $("[id*=nama_marketing]").val();
           info.nama_instansi = $("[id*=nama_instansi]").val();
           info.nama_pic = $("[id*=nama_pic]").val();
+          info.jadwal_instansi = $("[id*=jadwal_instansi]").val();
+          info.jenis_pelatihan = $("[id*=jenis_pelatihan]").val();
           info.email_instansi = $("[id*=email_instansi]").val();
           info.alamat_instansi = $("[id*=alamat_instansi]").val();
           info.nomer_instansi = $("[id*=nomer_instansi]").val();
@@ -61,14 +83,12 @@ $(function () {
               var WireDimDetail = {};
               var nama_peserta = row.find("[id^=nama]").val();
               /* Checking if control exist or not else assign empty value in sizeMax*/
-              var jenis = row.find("[id^=pel]") != "undefined" ? row.find("[id^=pel]").val() : "";
-              var jadwal = row.find("[id^=jadwal]") != "undefined" ? row.find("[id^=jadwal]").val() : "";
+              // var jenis = row.find("[id^=pel]") != "undefined" ? row.find("[id^=pel]").val() : "";
+              // var jadwal = row.find("[id^=jadwal]") != "undefined" ? row.find("[id^=jadwal]").val() : "";
               //var kode = row.find("[id^=kode]").val();
               var catatan = row.find("[id^=cat]").val();
               /*Sets the Values of controls */
               WireDimDetail.nama_peserta = nama_peserta;
-              WireDimDetail.jenis = jenis;
-              WireDimDetail.jadwal = jadwal;
               //WireDimDetail.kode = kode;
               WireDimDetail.catatan = catatan;
               /*Add WireDimDetail object in WireDimDetails Array object*/
@@ -357,10 +377,3 @@ $(function () {
     });
 
 });
-
-// dropdown function
-function getval(sel)
-{
-    // alert(sel.value);
-    document.getElementById("lblinfo").innerHTML= "Kode Pelatihan: " + document.getElementById("jns_pelatihan").value;
-}

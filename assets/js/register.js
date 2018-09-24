@@ -14,6 +14,16 @@ function getval(sel)
 
 $(document).ready(function(){
 
+  //dropdown pelatihan marketing
+  $('.dropPM').each(function() {
+    $(this).on('change', function() {
+      var $valDr = $(this).find('option:selected').val();
+      var $txtDr = $(this).find('option:selected').text();
+      var $num = $(this).attr('data-num');
+      $('.nm-pel'+$num).text($txtDr);
+      $('.kd-pel'+$num).text($valDr);
+    });
+  });
 
   //approval button
   $('.pterm').on('change', function() {
@@ -59,16 +69,17 @@ $(function () {
       editIndMarket.alamat = $("[id*=alamat-ind-"+$dataNoreg+"]").val();
       editIndMarket.telp = $("[id*=telp-ind-"+$dataNoreg+"]").val();
       editIndMarket.email = $("[id*=email-ind-"+$dataNoreg+"]").val();
+      editIndMarket.id = $("[id*=id-ind-"+$dataNoreg+"]").val();
 
       $.ajax({
         type: 'POST',
-        data: { editMarket : editIndMarket },
+        data: { editMarketInd : editIndMarket },
         url: '../../fungsi/edit-data-regis.php',
         success: function(result) {
           if (result != 1) {
             alert("Data gagal di submit");
           } else {
-
+            window.location.reload();
           }
         }
       });

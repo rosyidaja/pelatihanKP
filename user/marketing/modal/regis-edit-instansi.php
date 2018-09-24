@@ -7,6 +7,8 @@
     $noregis = $data["reg_no"];
     $namaPIC = $data["peserta_pic_nama"];
     $id = $data["id_peserta"];
+    $pel = $data["jns_pelatihan_nama"];
+    $pelkode = $data["id_jns_pelatihan"];
     $jenis = $data["peserta_jenis"];
     $instansi = $data["peserta_instansi_nama"];
     $jadwal = $data["id_jadwal"];
@@ -15,7 +17,7 @@
     $telp = $data["peserta_telp"];
   ?>
 
-  <!-- Modal view instansi End -->
+  <!-- Modal edit instansi start -->
 
   <div class="modal fade" id="editinstansi<?php echo $noregis;?>">
     <form data-noreg="<?php echo $noregis;?>" class="edit-instansi-marketing" method="post">
@@ -91,23 +93,23 @@
               </div>
             </div>
 
-
-
-            <div class="form-row edit-form">
+            <div class="form-row edit-form" style="margin-bottom: 0px;margin-top: 20px;">
               <div class="col-sm-3">
-                <br>
                 <label class="control-label"> <h5>Daftar Peserta</h5> </label>
+              </div>
+              <div class="col-sm-9 form-group">
+                <button type="button" data-tbl="<?php echo $noregis;?>" class="btn btn-primary btn-sm tambah-ps"><i class="fa fa-plus"></i> Tambah Data Peserta</button>
               </div>
             </div>
             <div class="tbdtlpsrta table-responsive">
 
-              <table class="table table-striped table-hover table-sm text-center">
+              <table id="tbdtl<?php echo $noregis;?>" class="table table-striped table-hover table-sm text-center tbl-peserta">
                 <thead>
                   <tr>
                     <th>Jenis Pelatihan</th>
                     <th>Kode Pelatihan</th>
-                    <th>ID</th>
                     <th>Nama Peserta</th>
+                    <th><i class="fa fa-cog"></i></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -121,11 +123,11 @@
                       $mtable_id = $data["id_peserta"];
                       $mtable_nama = $data["peserta_nama"];
                     ?>
-                    <tr>
-                      <td class="align-middle"><?php echo $mtable_pel; ?></td>
-                      <td class="align-middle"><?php echo $mtable_pel_kode; ?></td>
-                      <td class="align-middle"><?php echo $mtable_id; ?></td>
+                    <tr data-db="1" data-pid="<?php echo $mtable_id;?>">
+                      <td class="align-middle nm-pel<?php echo $noregis;?>"><?php echo $mtable_pel; ?></td>
+                      <td class="align-middle kd-pel<?php echo $noregis;?>"><?php echo $mtable_pel_kode; ?></td>
                       <td class="align-middle"> <input type="text" id="" class="form-control" value="<?php echo $mtable_nama; ?>"> </td>
+                      <td class="align-middle"><button type="button" class="hapus btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></td>
                     </tr>
                     <?php } ?>
 
@@ -140,7 +142,7 @@
           <!-- modal footer start -->
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Submit</button>
-            <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
+            <button type="button" class="btn btn-danger" onClick="window.location.reload()" data-dismiss="modal">Batal</button>
           </div>
           <!-- modal footer end -->
         </div>
@@ -149,10 +151,70 @@
     </form>
   </div>
 
-  <!-- Modal view instansi End -->
+  <!-- Modal edit instansi End -->
 
   <?php $modalloop++; } ?>
 
 
 <?php } ?>
 <!-- modal loop end -->
+<!-- button tambah peserta start -->
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    // tambah tabel
+    $('.tambah-ps').each(function(index) {
+      $(this).on("click", function() {
+        var dataTbl = $(this).attr('data-tbl');
+        var barisbaru = $('<tr data-db="0">');
+        var kolomtb = "";
+        var counter = $("#tbdtl"+dataTbl+" tbody>tr").length + 1;
+
+        kolomtb += '<td class="align-middle nm-pel<?php echo $noregis;?>"><?php echo $pel;?></td>';
+        kolomtb += '<td class="align-middle nm-pel<?php echo $noregis;?>"><?php echo $pelkode;?></td>';
+        kolomtb += '<td class="align-middle"><input type="text" class="form-control" id="nama' + counter + '" placeholder="Nama Peserta"></td>';
+        kolomtb += '<td class="align-middle"><button type="button" class="hapus btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></td>';
+
+        barisbaru.append(kolomtb);
+        $("#tbdtl"+dataTbl+" tbody").append(barisbaru);
+      });
+    });
+
+    $("table.tbl-peserta").on("click", ".hapus", function(event) {
+
+      var rowStat = $(this).closest("tr").attr('data-db');
+      var dataPid = $(this).closest("tr").attr('data-pid');
+      var deleteRow = $(this).closest("tr").remove();
+
+      if (confirm("Hapus Peserta id "+dataPid+" ?")) {
+
+        if (rowStat == "0") {
+          deleteRow;
+        } else {
+          // alert("data tidak dapat di hapus");
+
+          $.ajax({
+            type: 'POST',
+            url: '../../fungsi/edit-data-regis.php',
+            data: { pID : dataPid, delete: rowStat },
+            success: function(result) {
+              if(result != 1){
+                alert("Data Gagal dihapus, silahkan Coba Kembali");
+              }else{
+                deleteRow;
+              }
+            }
+          });
+
+        }
+
+      } else {
+
+        return false;
+
+      }
+    });
+
+  });
+</script>
+<!-- button tambah peserta end -->

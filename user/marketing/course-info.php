@@ -8,7 +8,7 @@ $query = mysqli_query($koneksi, "SELECT p.peserta_jenis, pel.jns_pelatihan_nama,
 $queryInd = mysqli_query($koneksi, "SELECT p.peserta_nama, p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta WHERE t.id_marketing='$mID' GROUp BY t.reg_no ORDER BY t.reg_no ASC");
 $queryIns = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, p.peserta_instansi_nama, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta WHERE t.id_marketing='$mID' GROUP BY t.reg_no ORDER BY t.reg_no ASC");
 $queryIndEdit = mysqli_query($koneksi, "SELECT p.peserta_nama, p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta WHERE t.id_marketing='$mID' GROUP BY t.reg_no ORDER BY t.reg_no ASC");
-$queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_pic_nama, p.peserta_alamat, p.peserta_email, p.peserta_telp, p.peserta_instansi_nama, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON p.peserta_id=t.id_peserta WHERE t.id_marketing='$mID' GROUP BY t.reg_no ORDER BY t.reg_no ASC");
+$queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_pic_nama, p.peserta_instansi_nama, pel.jns_pelatihan_nama, t.id_jns_pelatihan, p.peserta_jenis, p.peserta_alamat, p.peserta_email, p.peserta_telp, j.jadwal_sesi, t.id_peserta, t.reg_no, t.id_jadwal FROM m_peserta P INNER JOIN(m_jns_pelatihan pel INNER JOIN(t_sertifikasi t INNER JOIN m_jadwal j ON t.id_jadwal=j.jadwal_id) ON pel.jns_pelatihan_kode=t.id_jns_pelatihan) ON p.peserta_id=t.id_peserta WHERE t.id_marketing='$mID' GROUP BY t.reg_no ORDER BY t.reg_no ASC");
 ?>
 
 <div class="header">
@@ -58,8 +58,8 @@ $queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_jenis, p.peserta_pic_na
           <td class="align-middle"><?php echo $regno; ?></td>
           <td class="align-middle"><?php echo $instansi; ?></td>
           <td class="align-middle">
-            <select class="form-control apr-disabled<?php echo $no;?>" id="jadwal<?php echo $regno; ?>">
-              <option value="">Pilih Jadwal</option>
+            <select class="form-control dropPM apr-disabled<?php echo $no;?>" data-num="<?php echo $regno;?>" id="jpel<?php echo $regno; ?>">
+              <option value="">Pilih Pelatihan</option>
               <?php
               $drDown1 = mysqli_query($koneksi,"select * from m_jns_pelatihan");
               if (mysqli_num_rows($drDown1) > 0) {

@@ -17,7 +17,7 @@
   <!-- Modal view individu Start -->
 
   <div class="modal fade" id="editindividu<?php echo $noregis;?>">
-    <form class="" action="../../fungsi/marketing_datreg.php" method="post">
+    <form data-noreg="<?php echo $noregis;?>" class="edit-individu-marketing" method="post">
       <div class="modal-dialog modal-lg">
         <div class="modal-content">
           <!-- modal header start -->
@@ -28,28 +28,28 @@
           <!-- modal header end -->
           <!-- modal body start -->
           <div class="modal-body">
-            <input type="hidden" name="view_instansi_id" value="<?php echo $id2;?>">
+            <input type="hidden" id="id-ind-<?php echo $noregis;?>" value="<?php echo $id;?>">
             <div class="form-row">
               <div class="col-sm-3">
-                <label class="control-label">Peserta</label>
+                <label class="control-label">Nama Peserta</label>
               </div>
               <div class="col-sm1">
                 <label> : </label>
               </div>
               <div class="col-sm-4">
-                <input type="text" class="form-control" name="" value="<?php echo $nama; ?>">
+                <input type="text" class="form-control" id="nama-ind-<?php echo $noregis;?>" value="<?php echo $nama; ?>">
               </div>
             </div>
 
             <div class="form-row">
               <div class="col-sm-3">
-                <label class="control-label">Telepon</label>
+                <label class="control-label">Nomor Telepon</label>
               </div>
               <div class="col-sm1">
                 <label> : </label>
               </div>
               <div class="col-sm-4">
-                <input type="text" class="form-control" name="" value="<?php echo $telp; ?>">
+                <input type="text" class="form-control" id="telp-ind-<?php echo $noregis;?>" value="<?php echo $telp; ?>">
               </div>
             </div>
 
@@ -61,7 +61,7 @@
                 <label> : </label>
               </div>
               <div class="col-sm-4">
-                <input type="text" class="form-control" name="" value="<?php echo $email; ?>">
+                <input type="text" class="form-control" id="email-ind-<?php echo $noregis;?>" value="<?php echo $email; ?>">
               </div>
             </div>
 
@@ -73,7 +73,7 @@
                 <label> : </label>
               </div>
               <div class="col-sm-4">
-                <input type="text" class="form-control" name="" value="<?php echo $alamat; ?>">
+                <input type="text" class="form-control" id="alamat-ind-<?php echo $noregis;?>" value="<?php echo $alamat; ?>">
               </div>
             </div>
 
@@ -81,7 +81,7 @@
           <!-- modal body end -->
           <!-- modal footer start -->
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary" name="submit-edit">Submit</button>
+            <button type="submit" class="btn btn-primary">Submit</button>
             <button type="button" class="btn btn-danger" data-dismiss="modal">Batal</button>
           </div>
           <!-- modal footer end -->

@@ -5,7 +5,7 @@ include '../config/koneksi.php';
 if (isset($_POST['add-user'])) {
   // code...
   $username = $_POST['username'];
-  $password = $_POST['password'];
+  $password = md5($_POST['password']);
   $level = $_POST['level'];
 
   $tambah = "INSERT INTO m_user (user_level, user_nama, user_pwd) VALUES ('".$level."', '".$username."', '".$password."')";
@@ -45,10 +45,12 @@ if (isset($_POST['update-user'])) {
   // code...
   $edit_user_id = $_POST['edit_user_id'];
   $username = $_POST['username'];
+  $fnama = $_POST['fnama'];
+  $email = $_POST['email'];
   $password = $_POST['password'];
   $level = $_POST['level'];
 
-  $tambah = "UPDATE m_user SET user_nama='$username', user_pwd='$password', user_level='$level' WHERE user_id='$edit_user_id'";
+  $tambah = "UPDATE m_user SET user_nama='$username', user_fnama='$fnama', user_email='$email',  user_pwd='$password', user_level='$level' WHERE user_id='$edit_user_id'";
 
   if (mysqli_query($koneksi, $tambah)) {
     // code...

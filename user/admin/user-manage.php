@@ -3,13 +3,15 @@
 <?php
 
 include '../../config/koneksi.php';
-$datauser = mysqli_query($koneksi , "SELECT user_id, user_nama, user_pwd, level_user, user_level from m_user INNER JOIN m_level ON user_level=level_id");
+$datauser = mysqli_query($koneksi , "SELECT user_id, user_nama, user_pwd, level_user, user_level, user_fnama, user_email  from m_user INNER JOIN m_level ON user_level=level_id");
 
 echo '<table id="tbcourse" class="table table-stripped table-hover table-sm text-center">
 <thead>
   <tr>
     <th>ID</th>
     <th>Username</th>
+    <th>Nama User</th>
+    <th>Email User</th>
     <th>Password</th>
     <th>User Level</th>
     <th><i class="fa fa-cog"></i></th>
@@ -22,6 +24,8 @@ while ($row = mysqli_fetch_array($datauser)) {
   // code...
   $id = $row['user_id'];
   $username = $row['user_nama'];
+  $fnama = $row['user_fnama'];
+  $email = $row['user_email'];
   $level = $row['level_user'];
   $password = $row['user_pwd'];
   $level_id = $row['user_level'];
@@ -29,6 +33,8 @@ while ($row = mysqli_fetch_array($datauser)) {
   echo "<tr>";
   echo "<td>$id</td>";
   echo "<td>$username</td>";
+  echo "<td>$fnama</td>";
+  echo "<td>$email</td>";
   echo "<td>$password</td>";
   echo "<td>$level</td>";
 ?>
@@ -59,6 +65,24 @@ while ($row = mysqli_fetch_array($datauser)) {
             </div>
             <div class="col-sm-4">
               <input type="text" name="username" class="form-control" value="<?php echo $username;?>">
+            </div>
+          </div>
+          <input type="hidden" name="edit_user_id" value="<?php echo $id?>">
+          <div class="form-row">
+            <div class="col-sm-3">
+              <label class="control-label">Nama User</label>
+            </div>
+            <div class="col-sm-4">
+              <input type="text" name="fnama" class="form-control" value="<?php echo $fnama;?>">
+            </div>
+          </div>
+          <input type="hidden" name="edit_user_id" value="<?php echo $id?>">
+          <div class="form-row">
+            <div class="col-sm-3">
+              <label class="control-label">Email</label>
+            </div>
+            <div class="col-sm-4">
+              <input type="text" name="email" class="form-control" value="<?php echo $email;?>">
             </div>
           </div>
           <div class="form-row">

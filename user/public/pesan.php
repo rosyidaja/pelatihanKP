@@ -7,6 +7,16 @@ if (!isset($_GET['pesan'])) {
   // code...
   switch ($_GET['pesan']) {
 
+    case 'sukses-edit-acc':
+      // code...
+      echo '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" name="button">&times</button><strong>Edit Berhasil!</strong></div>';
+      break;
+
+    case 'gagal-edit-acc':
+      // code...
+      echo '<div class="alert alert-danger alert-dismissible"><button type="button" class="close" data-dismiss="alert" name="button">&times</button><strong>Edit Gagal!</strong></div>';
+      break;
+
     case 'sukses-aksi':
       // code...
       echo '<div class="alert alert-success alert-dismissible"><button type="button" class="close" data-dismiss="alert" name="button">&times</button><strong>Aksi Berhasil!</strong></div>';

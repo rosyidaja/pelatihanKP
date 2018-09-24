@@ -20,7 +20,7 @@ if (isset($_POST['login'])) {
 	// code...
 	// menangkap data yang dikirim dari form
 	$username = $_POST['username'];
-	$password = $_POST['password'];
+	$password = md5($_POST['password']);
 
 	// menyeleksi data admin dengan username dan password yang sesuai
 	$data = mysqli_query($koneksi,"select * from m_user where user_nama='$username' and user_pwd='$password'");

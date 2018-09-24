@@ -124,7 +124,7 @@ $queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_pic_nama, p.peserta_ins
           <td class="align-middle">
             <div class="btn-group btn-group-sm">
               <button type="button" class="btn btn-warning" data-target="#view<?php echo $jenis;?><?php echo $regno;?>" data-toggle="modal"><i class="fa fa-eye"></i> View</button>
-              <button type="button" class="btn btn-danger apr-disabled<?php echo $no;?>" data-target="#edit<?php echo $jenis;?><?php echo $no;?>" data-toggle="modal"><i class="fa fa-pen"></i> Edit</button>
+              <button type="button" class="btn btn-danger apr-disabled<?php echo $no;?>" data-target="#edit<?php echo $jenis;?><?php echo $regno;?>" data-toggle="modal"><i class="fa fa-pen"></i> Edit</button>
             </div>
           </td>
           <td class="align-middle">

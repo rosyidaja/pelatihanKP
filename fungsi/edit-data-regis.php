@@ -25,19 +25,35 @@ if ($mUID == "1") {
 
   } else if (isset($_POST['editMarketInd'])) {
     // code...
-    // Submit edit marketing
+    // Submit edit individu marketing
     extract($_POST['editMarketInd']);
-    $submitEditM = "UPDATE m_peserta SET peserta_nama='$nama', peserta_instansi_nama='$nama', peserta_alamat='$alamat', peserta_email='$email', peserta_telp='$telp' WHERE peserta_id='$id'";
-    if (mysqli_query($koneksi, $submitEditM)) {
+    $submitEditM_ind = "UPDATE m_peserta SET peserta_nama='$nama', peserta_instansi_nama='$nama', peserta_alamat='$alamat', peserta_email='$email', peserta_telp='$telp' WHERE peserta_id='$id'";
+    if (mysqli_query($koneksi, $submitEditM_ind)) {
       // code...
     } else {
       // code...
-      echo "Error: " . $submitEditM . "<br>" . $koneksi->error;
+      echo "Error: " . $submitEditM_ind . "<br>" . $koneksi->error;
     }
 
     echo 1;
 
-  } 
+  } else if (isset($_POST['editMarketIns'])) {
+    // code...
+    // Submit edit instansi marketing
+    extract($_POST['editMarketIns']);
+    $peserta = $_POST['task2'];
+
+    foreach ($peserta as $r => $row) {
+      // code...
+      $submitEditM_ins = "UPDATE m_peserta SET peserta_nama='".$row['peserta_nama']."', peserta_pic_nama='".$namaPIC."', peserta_instansi_nama='".$nama."', peserta_alamat='".$alamat."', peserta_telp='".$telp."', peserta_email='".$email."' WHERE peserta_id='".$row['peserta_id']."'";
+      if (mysqli_query($koneksi, $submitEditM_ins)) {
+        // code...
+      } else {
+        // code...
+      }
+    }
+    echo 1;
+  }
 
 }
 ?>

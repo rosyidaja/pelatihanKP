@@ -92,19 +92,34 @@ $(function () {
   //submit modal edit instansi marketing
   $('.edit-instansi-marketing').submit(function (e) {
     e.preventDefault();
-    // alert("test");
+
     var $dataNoreg = $(this).attr('data-noreg');
     if (confirm("Submit data ?")) {
       // alert("data berhasil di submit");
-      var editIndMarket = {};
-      editIndMarket.nama = $("[id*=nama-ind-"+$dataNoreg+"]").val();
-      editIndMarket.alamat = $("[id*=alamat-ind-"+$dataNoreg+"]").val();
-      editIndMarket.telp = $("[id*=telp-ind-"+$dataNoreg+"]").val();
-      editIndMarket.email = $("[id*=email-ind-"+$dataNoreg+"]").val();
+      var editInsMarket = {};
+      editInsMarket.nama = $("[id*=nama-ins-"+$dataNoreg+"]").val();
+      editInsMarket.namaPIC = $("[id*=nama_pic-ins-"+$dataNoreg+"]").val();
+      editInsMarket.alamat = $("[id*=alamat-ins-"+$dataNoreg+"]").val();
+      editInsMarket.telp = $("[id*=telp-ins-"+$dataNoreg+"]").val();
+      editInsMarket.email = $("[id*=email-ins-"+$dataNoreg+"]").val();
+
+      var tblPesertas = new Array();
+      $("#tbdtl"+$dataNoreg+" tbody tr").each(function() {
+        var baris = $(this);
+        var tblPeserta = {};
+        var peserta_nama = baris.find("[id^=nama"+$dataNoreg+"]").val();
+        var peserta_id = baris.find("[id^=id"+$dataNoreg+"]").val();
+        tblPeserta.peserta_nama = peserta_nama;
+        tblPeserta.peserta_id = peserta_id;
+        tblPesertas.push(tblPeserta);
+      })
 
       $.ajax({
         type: 'POST',
-        data: { editMarket : editIndMarket },
+        data: {
+           editMarketIns : editInsMarket,
+           task2 : tblPesertas
+        },
         url: '../../fungsi/edit-data-regis.php',
         success: function(result) {
           if (result != 1) {

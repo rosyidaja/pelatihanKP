@@ -27,7 +27,7 @@
           <!-- modal header start -->
           <div class="modal-header form-horizontal">
             <h4>Data Registrasi NO.<?php echo $noregis; ?></h4>
-            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <button type="button" class="close" onClick="window.location.reload()" data-dismiss="modal">&times;</button>
           </div>
           <!-- modal header end -->
           <!-- modal body start -->
@@ -41,7 +41,7 @@
                 <label> : </label>
               </div>
               <div class="col-sm-4">
-                <input type="text" class="form-control" id="" value="<?php echo $instansi; ?>">
+                <input type="text" class="form-control" id="nama-ins-<?php echo $noregis;?>" value="<?php echo $instansi; ?>">
               </div>
             </div>
 
@@ -53,7 +53,7 @@
                 <label> : </label>
               </div>
               <div class="col-sm-4">
-                <input type="text" class="form-control" id="" value="<?php echo $namaPIC; ?>">
+                <input type="text" class="form-control" id="nama_pic-ins-<?php echo $noregis;?>" value="<?php echo $namaPIC; ?>">
               </div>
             </div>
 
@@ -65,7 +65,7 @@
                 <label> : </label>
               </div>
               <div class="col-sm-4">
-                <input type="text" class="form-control" id="" value="<?php echo $telp; ?>">
+                <input type="text" class="form-control" id="telp-ins-<?php echo $noregis;?>" value="<?php echo $telp; ?>">
               </div>
             </div>
 
@@ -77,7 +77,7 @@
                 <label> : </label>
               </div>
               <div class="col-sm-4">
-                <input type="text" class="form-control" id="" value="<?php echo $email; ?>">
+                <input type="text" class="form-control" id="email-ins-<?php echo $noregis;?>" value="<?php echo $email; ?>">
               </div>
             </div>
 
@@ -89,7 +89,7 @@
                 <label> : </label>
               </div>
               <div class="col-sm-4">
-                <input type="text" class="form-control" id="" value="<?php echo $alamat; ?>">
+                <input type="text" class="form-control" id="alamat-ins-<?php echo $noregis;?>" value="<?php echo $alamat; ?>">
               </div>
             </div>
 
@@ -97,15 +97,16 @@
               <div class="col-sm-3">
                 <label class="control-label"> <h5>Daftar Peserta</h5> </label>
               </div>
-              <div class="col-sm-9 form-group">
-                <button type="button" data-tbl="<?php echo $noregis;?>" class="btn btn-primary btn-sm tambah-ps"><i class="fa fa-plus"></i> Tambah Data Peserta</button>
-              </div>
+              <!-- <div class="col-sm-9 form-group">
+                <button type="button" data-tbl="" class="btn btn-primary btn-sm tambah-ps"><i class="fa fa-plus"></i> Tambah Data Peserta</button>
+              </div> -->
             </div>
             <div class="tbdtlpsrta table-responsive">
 
               <table id="tbdtl<?php echo $noregis;?>" class="table table-striped table-hover table-sm text-center tbl-peserta">
                 <thead>
                   <tr>
+                    <th>ID</th>
                     <th>Jenis Pelatihan</th>
                     <th>Kode Pelatihan</th>
                     <th>Nama Peserta</th>
@@ -124,9 +125,11 @@
                       $mtable_nama = $data["peserta_nama"];
                     ?>
                     <tr data-db="1" data-pid="<?php echo $mtable_id;?>">
+                      <input type="hidden" id="id<?php echo $noregis;?>" value="<?php echo $mtable_id;?>">
+                      <td class="align-middle"><?php echo $mtable_id; ?></td>
                       <td class="align-middle nm-pel<?php echo $noregis;?>"><?php echo $mtable_pel; ?></td>
                       <td class="align-middle kd-pel<?php echo $noregis;?>"><?php echo $mtable_pel_kode; ?></td>
-                      <td class="align-middle"> <input type="text" id="" class="form-control" value="<?php echo $mtable_nama; ?>"> </td>
+                      <td class="align-middle"> <input type="text" id="nama<?php echo $noregis;?>" class="form-control" value="<?php echo $mtable_nama; ?>"> </td>
                       <td class="align-middle"><button type="button" class="hapus btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></td>
                     </tr>
                     <?php } ?>
@@ -162,55 +165,30 @@
 <script type="text/javascript">
   $(document).ready(function() {
 
-    // tambah tabel
-    $('.tambah-ps').each(function(index) {
-      $(this).on("click", function() {
-        var dataTbl = $(this).attr('data-tbl');
-        var barisbaru = $('<tr data-db="0">');
-        var kolomtb = "";
-        var counter = $("#tbdtl"+dataTbl+" tbody>tr").length + 1;
-
-        kolomtb += '<td class="align-middle nm-pel<?php echo $noregis;?>"><?php echo $pel;?></td>';
-        kolomtb += '<td class="align-middle nm-pel<?php echo $noregis;?>"><?php echo $pelkode;?></td>';
-        kolomtb += '<td class="align-middle"><input type="text" class="form-control" id="nama' + counter + '" placeholder="Nama Peserta"></td>';
-        kolomtb += '<td class="align-middle"><button type="button" class="hapus btn btn-danger btn-sm"><i class="fa fa-minus"></i></button></td>';
-
-        barisbaru.append(kolomtb);
-        $("#tbdtl"+dataTbl+" tbody").append(barisbaru);
-      });
-    });
-
-    $("table.tbl-peserta").on("click", ".hapus", function(event) {
+    $("table.tbl-peserta").on("click", ".hapus", function() {
 
       var rowStat = $(this).closest("tr").attr('data-db');
       var dataPid = $(this).closest("tr").attr('data-pid');
-      var deleteRow = $(this).closest("tr").remove();
+      var deleteRow = $(this);
 
       if (confirm("Hapus Peserta id "+dataPid+" ?")) {
 
-        if (rowStat == "0") {
-          deleteRow;
-        } else {
-          // alert("data tidak dapat di hapus");
-
-          $.ajax({
-            type: 'POST',
-            url: '../../fungsi/edit-data-regis.php',
-            data: { pID : dataPid, delete: rowStat },
-            success: function(result) {
-              if(result != 1){
-                alert("Data Gagal dihapus, silahkan Coba Kembali");
-              }else{
-                deleteRow;
-              }
+        $.ajax({
+          type: 'POST',
+          url: '../../fungsi/edit-data-regis.php',
+          data: { pID : dataPid, delete: rowStat },
+          success: function(result) {
+            if(result != 1){
+              alert("Data Gagal dihapus, silahkan Coba Kembali");
+            }else{
+              deleteRow.closest("tr").remove();
             }
-          });
-
-        }
+          }
+        });
 
       } else {
 
-        return false;
+
 
       }
     });

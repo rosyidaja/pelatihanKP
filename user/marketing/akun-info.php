@@ -52,7 +52,7 @@ $user_password =$query['user_pwd'];
         </div>
         <div> :</div>
         <div class="col-sm-7">
-          <input type="text" id="" class="form-control" name="password" value="<?php echo $user_password;?>">  
+          <input type="password" id="" class="form-control" name="password" value="<?php echo $user_password;?>">
         </div>
       </div>
     </div>

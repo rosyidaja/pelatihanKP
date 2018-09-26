@@ -38,7 +38,13 @@ if (isset($_POST['login'])) {
 			$_SESSION['m-id']=$row['user_id'];
 			$_SESSION['status']="admin";
 			echo '<script language="javascript">alert("Anda berhasil Login Admin!"); document.location="../user/admin/index.php";</script>';
-		} else {
+		} else if($row['user_level'] == "0") {
+			// code...
+			$_SESSION['username']=$username;
+			$_SESSION['m-id']=$row['user_id'];
+			$_SESSION['status']="umum";
+			echo '<script language="javascript"> document.location="../user/public/dashboard.php";</script>';
+		}else {
 			// code...
 			$_SESSION['username']=$username;
 			$_SESSION['m-id']=$row['user_id'];

@@ -26,16 +26,24 @@
         <div class="container-fluid">
             <div class="col-sm-12">
             <div class="header-public">
-            <nav class="navbar navbar-d navbar-expand-sm bg-light" >
+              <nav class="navbar navbar-expand-sm bg-light" >
+                <div class="col-sm-2">
                 <a class="navbar-brand" href="#">
-                    <img class="img-fluid" style="float: left;" src="../../assets/image/logo.png" alt="Ebiz Infotama">
+                  <img class="img-fluid" style="float: left;" src="../../assets/image/logo.png" alt="Ebiz Infotama">
                 </a>
-                <!-- Brand/logo -->
-                <div class="dashboard-header">
-                    <h3>REKAPITULASI JUMLAH PESERTA PELATIHAN PERIODE 2018-2019</h3>
                 </div>
-            </nav>
+                <!-- Brand/logo -->
+                  <div class=" col-sm-8 dashboard-header">
+                      <h3>REKAPITULASI JUMLAH PESERTA PELATIHAN</h3>
+                  </div>
+                  <div class=" col-sm-2">
+                    <button type="submit" name="login" value="login" class="btn btn-primary" style="float: right;">Logout</button>
+                  </div>
+                </div>
+              </nav>
             </div>
+        </div>
+        </div>
 
     <div class="tbdashboard">
     <table class="table table-striped table-hover table-sm text-center">

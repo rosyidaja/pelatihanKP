@@ -9,6 +9,7 @@
     <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.css">
     <link rel="stylesheet" type="text/css" href="assets/css/fa_all.css">
     <link rel="stylesheet" type="text/css" href="assets/css/register.css">
+    <link rel="icon" type="img/png" href="assets/image/logo.png" sizes="16x16">
 
     <!-- jQuery -->
     <script src="assets/js/jquery-3.3.1.min.js"></script>
@@ -61,8 +62,7 @@
   </form>
   </article>
   <article class="card-footer">
-    <label for=""><a href="user/public/form.php" style="color: #fdfeff;">Bukan admin? Klik untuk masuk ke form registrasi</a></label>
-    <label for=""><a href="user/public/dashboard.php" style="color: #fdfeff;">Atau klik untuk menuju dashboard umum</a></label>
+    <label for=""><a href="user/public/form.php" style="color: #fdfeff;">Form Registrasi Pelatihan</a></label>
   </article>
   </div>
   </div>

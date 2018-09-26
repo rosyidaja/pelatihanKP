@@ -126,6 +126,7 @@ $queryInsEdit = mysqli_query($koneksi, "SELECT p.peserta_pic_nama, p.peserta_ins
               <option value="cod" <?php if ($data["status_pay"] == "cod") { echo "selected"; } ?> >COD</option>
               <option value="kontrak" <?php if ($data["status_pay"] == "kontrak") { echo "selected"; } ?> >Kontrak</option>
               <option value="H - 1" <?php if ($data["status_pay"] == "H - 1") { echo "selected"; } ?> >H - 1</option>
+              <option value="Belum Bayar" <?php if ($data["status_pay"] == "Belum Bayar") { echo "selected"; } ?> >Belum Bayar</option>
             </select>
           </td>
           <td>Approved<br>by <?php echo $namaMar; ?></td>

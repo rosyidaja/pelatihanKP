@@ -238,6 +238,8 @@ $(function () {
               var approveM = {};
               approveM.id = $("[id*=noregis"+$dataField+"]").val();
               approveM.jadwal = $("[id*=jadwal"+$dataField+"]").val();
+              approveM.jenisPel = $("[id*=jpel"+$dataField+"]").val();
+              approveM.jenisPel = $("[id*=jpel"+$dataField+"]").val();
               approveM.lokasi = $("[id*=lokasi"+$dataField+"]").val();
               approveM.tools = $("[id*=tools"+$dataField+"]").val();
               approveM.pembayaran = $("[id*=pembayaran"+$dataField+"]").val();
@@ -349,6 +351,7 @@ $(function () {
               var approveA = {};
               approveA.id = $("[id*=noregis"+$dataField+"]").val();
               approveA.jadwal = $("[id*=jadwal"+$dataField+"]").val();
+              approveA.jenisPel = $("[id*=jpel"+$dataField+"]").val();
               approveA.lokasi = $("[id*=lokasi"+$dataField+"]").val();
               approveA.trainer = $("[id*=trainer"+$dataField+"]").val();
               approveA.tools = $("[id*=tools"+$dataField+"]").val();

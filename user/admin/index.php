@@ -26,6 +26,12 @@ if (!isset($_GET['halaman'])) {
 			$title = "Tambah, Edit, Delete User";
 			break;
 
+		case 'jadwal':
+			// code...
+			$halaman = 'jadwal.php';
+			$title = "Jadwal Training";
+			break;
+
 		case 'akun-info':
 			// code...
 			$halaman = 'akun-info.php';
@@ -79,6 +85,7 @@ if ($_SESSION['status']!="admin") {
 			<div class="list-side">
 			<ul class="nav nav-pills nav-stacked text-right" style="display:block;">
 				<li class="active"><a href="index.php">Dashboard</a></li>
+				<li><a href="?halaman=jadwal">Jadwal</a></li>
 				<li><a href="?halaman=user-manage">Manage User</a></li>
 				<li><a href="?halaman=course-info">Data Registrasi</a></li>
 				<li><a href="?halaman=akun-info">Pengaturan Akun</a></li>

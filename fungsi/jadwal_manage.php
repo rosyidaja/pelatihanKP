@@ -12,10 +12,10 @@ if (isset($_POST['add-jadwal'])) {
 
   if (mysqli_query($koneksi, $tambah)) {
     // code...
-    header("location:../user/marketing/index.php?halaman=jadwal&pesan=sukses");
+    header("location:../user/admin/index.php?halaman=jadwal&pesan=sukses-aksi");
   } else {
     // code...
-    header("location:../user/marketing/index.php?halaman=jadwal&pesan=gagal");
+    header("location:../user/admin/index.php?halaman=jadwal&pesan=gagal-aksi");
   }
 }
 
@@ -30,10 +30,10 @@ if (isset($_POST['delete'])) {
 
   if (mysqli_query($koneksi, $delete)) {
     // code...
-    header("location:../user/marketing/index.php?halaman=jadwal&pesan=sukses");
+    header("location:../user/admin/index.php?halaman=jadwal&pesan=sukses-aksi");
   } else {
     // code...
-    header("location:../user/marketing/index.php?halaman=jadwal&pesan=gagal");
+    header("location:../user/admin/index.php?halaman=jadwal&pesan=gagal-aksi");
   }
 }
 
@@ -58,10 +58,10 @@ if (isset($_POST['update-jadwal'])) {
 
   if (mysqli_query($koneksi, $tambah)) {
     // code...
-    header("location:../user/marketing/index.php?halaman=jadwal&pesan=sukses");
+    header("location:../user/admin/index.php?halaman=jadwal&pesan=sukses-aksi");
   } else {
     // code...
-    header("location:../user/marketing/index.php?halaman=jadwal&pesan=gagal");
+    header("location:../user/admin/index.php?halaman=jadwal&pesan=gagal-aksi");
   }
 }
 

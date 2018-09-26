@@ -206,7 +206,7 @@ $noregBaru = mysqli_fetch_assoc($sql_noregis);
                     <?php
                       echo $marketing_dropdown;
                     ?>
-                    <option value="internet">Internet</option>
+                    <option value="1">Internet</option>
                   </select>
                 </div>
               </div>

@@ -386,6 +386,7 @@ $(function () {
               var approveA = {};
               approveA.id = $("[id*=noregis"+$dataField+"]").val();
               approveA.jadwal = $("[id*=jadwal"+$dataField+"]").val();
+              approveA.jenisPel = $("[id*=jpel"+$dataField+"]").val();
               approveA.lokasi = $("[id*=lokasi"+$dataField+"]").val();
               approveA.trainer = $("[id*=trainer"+$dataField+"]").val();
               approveA.tools = $("[id*=tools"+$dataField+"]").val();

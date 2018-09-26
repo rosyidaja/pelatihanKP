@@ -12,10 +12,10 @@ if (isset($_POST['add-jadwal'])) {
 
   if (mysqli_query($koneksi, $tambah)) {
     // code...
-    header("location:../user/marketing/index.php?halaman=jadwal&pesan=sukses");
+    header("location:../user/marketing/index.php?halaman=jadwal&pesan=sukses-aksi");
   } else {
     // code...
-    header("location:../user/marketing/index.php?halaman=jadwal&pesan=gagal");
+    header("location:../user/marketing/index.php?halaman=jadwal&pesan=gagal-aksi");
   }
 }
 

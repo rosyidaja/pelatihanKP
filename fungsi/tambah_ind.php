@@ -15,13 +15,21 @@ if (isset($_POST['nama'])) {
   $marketing = $_POST['marketing'];
   ;
 
+  if ($marketing == '1') {
+    // code...
+    $approve = 1;
+  } else {
+    // code...
+    $approve = 0;
+  }
 
-  $sql = "INSERT INTO m_peserta (peserta_nama, peserta_email, peserta_alamat, peserta_telp, peserta_jenis,peserta_instansi_nama) VALUES ('".$nama."', '".$email."', '".$alamat."', '$telp', '".$pilihan."', '".$nama."')";
+  $sql = "INSERT INTO m_peserta (peserta_nama, peserta_email, peserta_alamat, peserta_telp, peserta_jenis, peserta_instansi_nama) VALUES ('".$nama."', '".$email."', '".$alamat."', '$telp', '".$pilihan."', '".$nama."')";
 
   if (mysqli_query($koneksi, $sql)) {
     // code...
+
     $last_id = mysqli_insert_id($koneksi);
-    $sql_sertifikasi = "INSERT INTO t_sertifikasi (id_jadwal, id_jns_pelatihan, id_peserta, reg_no, tgl_registrasi, id_marketing) VALUES ($schedule, '".$course."', $last_id, $noregis, curdate(), $marketing)";
+    $sql_sertifikasi = "INSERT INTO t_sertifikasi (id_jadwal, id_jns_pelatihan, id_peserta, reg_no, tgl_registrasi, id_marketing, approve, tgl_approve) VALUES ($schedule, '".$course."', $last_id, $noregis, curdate(), $marketing, $approve, curdate())";
 
     if (mysqli_query($koneksi, $sql_sertifikasi)) {
       // code...

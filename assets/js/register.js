@@ -311,6 +311,65 @@ $(function () {
         init();
     });
 
+    $('.cancel').each(function() {
+      var cancel = $(this);
+      var dataNum = cancel.attr('data-num');
+
+      cancel.on('click', function () {
+
+        if (confirm("Cancel data registrasi No."+dataNum+" ?")) {
+
+          $.ajax({
+            type: 'POST',
+            data: { cancel : 4, dataNum },
+            url: '../../fungsi/approval.php',
+            success: function (result) {
+              if (result != 1) {
+                alert("aksi gagal");
+              } else {
+                window.location.href = "../../user/admin/index.php?halaman=course-info&pesan=sukses-aksi";
+              }
+            }
+          });
+
+        } else {
+          return false;
+        }
+
+      });
+
+    });
+
+    $('.selesai').each(function() {
+
+      var selesai = $(this);
+      var dataNum = selesai.attr('data-num');
+
+      selesai.on('click', function () {
+
+        if (confirm("Tandai sebagai selesai ?")) {
+
+          $.ajax({
+            type: 'POST',
+            data: { selesai : 3, dataNum },
+            url: '../../fungsi/approval.php',
+            success: function (result) {
+              if (result != 1) {
+                alert("aksi gagal");
+              } else {
+                window.location.href = "../../user/admin/index.php?halaman=course-info&pesan=sukses-aksi";
+              }
+            }
+          });
+
+        } else {
+          return false;
+        }
+
+      });
+
+    });
+
     //tombol setujui admin
     $('.button-checkbox-admin').each(function () {
 

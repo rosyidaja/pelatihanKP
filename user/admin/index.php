@@ -20,6 +20,12 @@ if (!isset($_GET['halaman'])) {
 			$title = "Informasi Training";
 			break;
 
+		case 'history':
+			// code...
+			$halaman = 'history.php';
+			$title = "Informasi History Training";
+			break;
+
 		case 'user-manage':
 			// code...
 			$halaman = 'user-manage.php';
@@ -85,9 +91,10 @@ if ($_SESSION['status']!="admin") {
 			<div class="list-side">
 			<ul class="nav nav-pills nav-stacked text-right" style="display:block;">
 				<li class="active"><a href="index.php">Dashboard</a></li>
+				<li><a href="?halaman=course-info">Data Registrasi</a></li>
+				<li><a href="?halaman=history">History Registrasi</a></li>
 				<li><a href="?halaman=jadwal">Jadwal</a></li>
 				<li><a href="?halaman=user-manage">Manage User</a></li>
-				<li><a href="?halaman=course-info">Data Registrasi</a></li>
 				<li><a href="?halaman=akun-info">Pengaturan Akun</a></li>
 				<li><a href="?halaman=logout">Logout</a></li>
 			</ul>

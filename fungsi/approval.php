@@ -20,9 +20,41 @@ if ($mUID == '1'){
 
   echo 1;
 
+} else if (isset($_POST['selesai'])) {
+  //tombol selesai admin
+  // code...
+  $dataStat = $_POST['selesai'];
+  $dataNum = $_POST['dataNum'];
+
+  $selesai = "UPDATE t_sertifikasi SET approve=$dataStat WHERE reg_no=$dataNum";
+  if (mysqli_query($koneksi, $selesai)) {
+    // code...
+  } else {
+    // code...
+    echo "Error: " . $selesai . "<br>" . $koneksi->error;
   }
 
-}else {
+  echo 1;
+
+} elseif (isset($_POST['cancel'])) {
+  //tombol cancel admin
+  // code...
+  $dataStat = $_POST['cancel'];
+  $dataNum = $_POST['dataNum'];
+
+  $cancel = "UPDATE t_sertifikasi SET approve=$dataStat WHERE reg_no=$dataNum";
+  if (mysqli_query($koneksi, $cancel)) {
+    // code...
+  } else {
+    // code...
+    echo "Error: " . $cancel . "<br>" . $koneksi->error;
+  }
+
+  echo 1;
+
+}
+
+} else {
 
 if (isset($_POST['marketingApr'])) {
   //tombol approve marketing

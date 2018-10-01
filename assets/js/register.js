@@ -14,6 +14,24 @@ function getval(sel)
 
 $(document).ready(function(){
 
+  //print individu
+  $('.print-individu').each(function() {
+    var printInd = $(this);
+    var dataPrintInd = printInd.attr('data-print');
+    printInd.on('click', function() {
+      window.open('../../user/marketing/cetakInd.php?reg_no='+dataPrintInd,'Cetak Data Regis','resizable=1,scrollbars=1, menubar=0');
+    });
+  });
+
+  //print instansi
+  $('.print-instansi').each(function() {
+    var printIns = $(this);
+    var dataPrintIns = printIns.attr('data-print');
+    printIns.on('click', function() {
+      window.open('../../user/marketing/cetakIns.php?reg_no='+dataPrintIns,'Cetak Data Regis','resizable=1,scrollbars=1, menubar=0');
+    });
+  });
+
   //dropdown pelatihan marketing
   $('.dropPM').each(function() {
     $(this).on('change', function() {

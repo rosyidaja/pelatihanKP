@@ -80,6 +80,7 @@
         <!-- modal body end -->
         <!-- modal footer start -->
         <div class="modal-footer">
+          <button type="button" data-print="<?php echo $noregis;?>" class="btn btn-success print-individu"><i class="fa fa-print"></i> Print</button>
           <button type="button" class="btn btn-danger" data-dismiss="modal">Tutup</button>
         </div>
         <!-- modal footer end -->

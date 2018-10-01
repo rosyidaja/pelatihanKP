@@ -5,19 +5,12 @@
 	<link rel="stylesheet" type="text/css" href="../../assets/css/bootstrap.css">
 </head>
 <body>
-	<div class="container">
-	<table class="table table-bordered">
-	<thead>
-		<tr>
-		<th>
-			<img src="../../assets/image/header-cetak.JPG" style="width:900px;padding-left:130px;" >
-		</th>
-		</tr>
-	</thead>
-	<tbody>
-	<tr>
-		<td>
-
+	<div class="container p-5">
+	 <div class="row">
+		<div class="col-12 border border-3">
+			<img src="../../assets/image/header-cetak.JPG" style="width:850px;padding-left:130px; padding-top: 20px; padding-bottom: 20px;" >
+		</div>
+		<div class="col-12 border border-3">
 		<div style="padding-top: 30px;padding-bottom: 30px;">
 				<h4 class="text-center">
 					REGISTRATION FORM
@@ -92,10 +85,8 @@
 				</div>
 			</div>
 		</div>
-		</td>
-	</tr>
-	</tbody>
-	</table>
+		</div>
+	 </div>
 	</div>
 </body>
 </html>
